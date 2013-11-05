@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_filter :require_current_user!, :only => [:show]
   
   def show
+    @user = current_user
+    @forms = @user.forms
     render :show
   end
   

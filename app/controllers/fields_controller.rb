@@ -1,8 +1,10 @@
 class FieldsController < ApplicationController
   def new
+    render :new
   end
 
   def create
+    render :json => params
   end
   
   def edit

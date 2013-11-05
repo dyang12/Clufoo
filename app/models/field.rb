@@ -1,13 +1,13 @@
 class Field
   include MongoMapper::EmbeddedDocument
   
-  key :question, String, :required => true
+  key :label, String, :required => true
   key :type, String, :required => true
-  key :required, Boolean
-  key :uniqueness, Boolean
+  key :required, String
+  key :uniqueness, String
   key :options, Array
   
-  attr_accessible :question, :type, :required, :uniqueness, :options
+  attr_accessible :label, :type, :required, :uniqueness, :options
   
   timestamps!
 end

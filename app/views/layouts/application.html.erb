@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+	<% if(self.current_user) %>
+		<%= button_to "Log Out", session_url, :method => :destroy %>
+	<% else %>
+	<span>
+		<%= button_to "Sign In", new_session_url, :method => :get %>
+		<%= button_to "Sign Up", new_user_url, :method => :get %>
+	</span>
+	<% end %>
+	
+	<%= yield %>
 
 </body>
 </html>

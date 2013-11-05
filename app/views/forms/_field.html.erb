@@ -9,4 +9,5 @@ Options: <%= field.display_options %>
 	<br>
 <% end %>
 <%= button_to "Edit Field", edit_form_field_url(form.id, field.id), :method => :get %>
+<%= button_to "Remove Field", form_field_url(form.id, field.id), :method => :delete %>
 <br>

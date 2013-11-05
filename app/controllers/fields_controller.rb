@@ -48,6 +48,14 @@ class FieldsController < ApplicationController
   end
   
   def destroy
+    @form = current_user.forms.find(params[:form_id])
+    @field = @form.fields.find(params[:id])
+    fields = @form.fields
+    fields.delete(@field)
+    
+    @form.update_attributes(:fields => fields)
+    
+    redirect_to form_url(@form.id)
   end
 
 end

@@ -7,7 +7,20 @@ class Field
   key :uniqueness, String
   key :options, Array
   
+  timestamps!
+  
   attr_accessible :label, :type, :required, :uniqueness, :options
   
-  timestamps!
+  before_validation :generate_options
+  
+  private
+  def generate_options
+    if self.type == "radio" || "checkbox"
+      default_options = []
+      
+      
+      
+      self.options = default_options
+    end
+  end
 end

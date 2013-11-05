@@ -1,5 +1,8 @@
 <h3>Add Field</h3>
-<form action="<%= fields_url %>" method="post" 
+
+<%= render :partial => "layouts/errors" %>
+
+<form action="<%= form_fields_url(@form.id) %>" method="post" 
 			accept-charset="utf-8">
 	<input type="hidden" 
 				 name="authenticity_token"

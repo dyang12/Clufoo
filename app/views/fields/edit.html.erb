@@ -1,0 +1,49 @@
+<h3>Edit Field</h3>
+
+<%= render :partial => "layouts/errors" %>
+
+<form action="<%= form_field_url(@form.id, @field.id) %>" method="post" 
+			accept-charset="utf-8">
+	<input type="hidden" 
+				 name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+	
+ 	<input type="hidden" name="_method" value="put">
+	
+	<label for="field-label">Field Label: </label>
+	<input type="text" name="field[label]"
+				 value="<%= @field.label %>" id="field-label">
+	<br>
+	
+	<label for="field-type">Field Type: </label>
+	<select name="field[type]" id="field-type">
+		<option value="text" <%= "selected" if @field.type == "text" %>>Single Line Text</option>
+		<option value="textarea" <%= "selected" if @field.type == "textarea" %>>Paragraph Text</option>
+		<option value="checkbox" <%= "selected" if @field.type == "checkbox" %>>Checkbox</option>
+		<option value="select" <%= "selected" if @field.type == "select" %>>Dropdown</option>
+		<option value="radio" <%= "selected" if @field.type == "radio" %>>Multiple Choice</option>
+	</select>
+	<br>
+	
+	<% if @field.required %>
+		<label for="field-required">Required</label>
+		<input type="checkbox" name="field[required]" value="t" id="field-required" checked>
+		<br>
+	<% else %>
+		<label for="field-required">Required</label>
+		<input type="checkbox" name="field[required]" value="t" id="field-required">
+		<br>
+	<% end %>
+	
+	<% if @field.uniqueness %>
+		<label for="field-unique">No Duplicates</label>
+		<input type="checkbox" name="field[uniqueness]" value="t" id="field-unique" checked>
+		<br>
+	<% else %>
+		<label for="field-unique">No Duplicates</label>
+		<input type="checkbox" name="field[uniqueness]" value="t" id="field-unique">
+		<br>
+	<% end %>
+	
+	<p><input type="submit" value="Create Field"></p>
+</form>

@@ -11,7 +11,7 @@ class Field
   
   attr_accessible :label, :type, :required, :uniqueness, :options
   
-  # before_validation :generate_choices
+  before_validation :generate_choices
   
   def display_type
     if self.type == "text"
@@ -28,27 +28,22 @@ class Field
   end
   
   def display_options
-    opt_string = ""
+    opts = []
     
-    if self.required
-      opt_string += "Required, "
-    end
+    opts << "Required" if self.required
+    opts << "No Duplicates" if self.uniqueness
     
-    if self.uniqueness
-      opt_string += "No duplicates, "
-    end
-    
-    opt_string.chop.chop
+    opts.join(", ")
+  end
+  
+  def display_choices
+    self.choices.join(", ")
   end
   
   private
-  # def generate_choices
-#     if self.type == "radio" || "checkbox"
-#       default_choices = []
-#       
-#       
-#       
-#       self.choices = default_choices
-#     end
-#   end
+  def generate_choices
+    if self.type == "radio" || self.type == "checkbox"
+      self.choices = ["First Choice", "Second Choice", "Third Choice"]
+    end
+  end
 end

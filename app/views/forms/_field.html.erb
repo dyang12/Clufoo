@@ -4,5 +4,9 @@ Field Type: <%= field.display_type %>
 <br>
 Options: <%= field.display_options %>
 <br>
-<%= button_to "Edit Field", edit_form_field_url(form.id, field.id) %>
+<% if field.type == "radio" || "checkbox" %>
+	Choices: <%= field.display_choices %>
+	<br>
+<% end %>
+<%= button_to "Edit Field", edit_form_field_url(form.id, field.id), :method => :get %>
 <br>

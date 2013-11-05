@@ -1,6 +1,7 @@
 class FieldsController < ApplicationController
   def new
     @form = current_user.forms.find(params[:form_id])
+    @field = Field.new
     render :new
   end
 
@@ -21,6 +22,9 @@ class FieldsController < ApplicationController
   end
   
   def edit
+    @form = current_user.forms.find(params[:form_id])
+    @field = @form.fields.find(params[:id])
+    render :edit
   end
   
   def update

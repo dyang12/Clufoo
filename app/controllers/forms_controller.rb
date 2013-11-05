@@ -11,10 +11,13 @@ class FormsController < ApplicationController
   
   def create
     @form = Form.new(params[:form])
-    
     #doesnt work
-    if current_user.update_attributes(:forms =>[@form])
-      redirect_to form_url(@form)
+    if @form.valid?
+      forms = current_user.forms
+      forms.push(@form)
+      current_user.update_attributes(:forms => forms)
+      
+      redirect_to form_url(@form.id)
     else
       flash.now[:errors] = @form.errors.full_messages
       render :new
@@ -31,6 +34,6 @@ class FormsController < ApplicationController
   end
   
   def destroy
-    #???
+    
   end
 end

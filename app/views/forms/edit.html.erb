@@ -2,12 +2,12 @@
 
 <%= render :partial => "layouts/errors" %>
 
-<form action="<%= forms_url %>" method="post" accept-charset="utf-8">
+<form action="<%= form_url(@form.id) %>" method="post" accept-charset="utf-8">
 	<input type="hidden" 
 				 name="authenticity_token"
 				 value="<%= form_authenticity_token %>">
 	
-	<input type="hidden" name="_name" value="put">
+	<input type="hidden" name="_method" value="put">
 	
 	<label for="form-title">Title</label>
 	<input type="text" name="form[title]" 
@@ -15,9 +15,7 @@
 	<br>
 	
 	<label for="form-description">Description</label>
-	<textarea name="form[description]" id="form-description">
-		<%= @form.description %>
-	</textarea>
+	<textarea name="form[description]" id="form-description"><%= @form.description %></textarea>
 	
 	<p><input type="submit" value="Edit Form"></p>
 </form>

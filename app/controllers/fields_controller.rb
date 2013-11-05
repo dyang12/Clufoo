@@ -28,6 +28,23 @@ class FieldsController < ApplicationController
   end
   
   def update
+    @form = current_user.forms.find(params[:form_id])
+    @field = @form.fields.find(params[:id])
+    
+    unless params[:field][:required]
+      @field.required = nil
+    end
+    
+    unless params[:field][:uniqueness]
+      @field.uniqueness = nil
+    end
+    
+    if @field.update_attributes(params[:field])
+      redirect_to form_url(@form.id)
+    else
+      flash.now[:errors] = @field.errors.full_messages
+      render :edit
+    end
   end
   
   def destroy

@@ -1,4 +1,7 @@
 <span>
-	<%= link_to form.title, form_url(form) %>
-	<%= link_to edit, edit_form_url(form)%>
+	<%= button_to form.title, form_url(form), :method => :get %>
+	<%= button_to "Edit", edit_form_url(form), :method => :get %>
+	Entries
+	<%= button_to "Delete", form_url(form), :method => :delete %>
 </span>
+<br>

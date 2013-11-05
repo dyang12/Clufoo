@@ -5,5 +5,5 @@ WufooClone::Application.routes.draw do
   resources :forms, :except =>[:index] do
     resources :fields, :only => [:new]
   end
-  resources :fields, :except => [:index, :new]
+  resources :fields, :except => [:index, :new, :show]
 end

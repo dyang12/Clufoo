@@ -1,4 +1,4 @@
-<h3>Edit Form</h3>
+<h3>Create Form</h3>
 
 <%= render :partial => "layouts/errors" %>
 
@@ -6,8 +6,6 @@
 	<input type="hidden" 
 				 name="authenticity_token"
 				 value="<%= form_authenticity_token %>">
-	
-	<input type="hidden" name="_name" value="put">
 	
 	<label for="form-title">Title</label>
 	<input type="text" name="form[title]" 
@@ -19,5 +17,5 @@
 		<%= @form.description %>
 	</textarea>
 	
-	<p><input type="submit" value="Edit Form"></p>
+	<p><input type="submit" value="Create Form"></p>
 </form>

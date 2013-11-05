@@ -7,5 +7,7 @@ class Field
   key :uniqueness, Boolean
   key :options, Array
   
+  attr_accessible :question, :type, :required, :uniqueness, :options
+  
   timestamps!
 end

@@ -6,6 +6,8 @@ class User
   key :password_digest, String, :required => true
   key :session_token, String, :required => true
   
+  attr_accessible :username, :password
+  
   timestamps!
   
   validates_length_of :password, :minimum => 6, :allow_nil => true

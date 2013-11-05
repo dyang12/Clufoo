@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :require_no_current_user!, :only => [:new, :create]
+  before_filter :require_current_user!, :only => [:show]
+  
   def show
     render :show
   end
@@ -9,14 +12,21 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
-    
-    if @user.save
-      self.current_user = @user
-      redirect user_url(@user.id)
+    if(params[:user][:password] == params[:user][:repeat])
+      params[:user][:repeat] = nil
+      @user = User.new(params[:user])
+      
+      if @user.save
+        self.current_user = @user
+        redirect_to user_url(@user.id)
+      else
+        flash.now[:errors] = @user.errors.full_messages
+        render :new
+      end
     else
-      flash.now[:errors] => @user.errors.full_messages
-      render => :new
-    end
+      flash.now[:errors] = ["Password does not match"]
+      @user = User.new(params[:user])
+      render :new
+    end    
   end
 end

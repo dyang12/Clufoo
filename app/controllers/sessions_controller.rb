@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_filter :require_no_current_user!, :only => [:create, :new]
+  before_filter :require_no_current_user!, :only => [:new, :create]
   before_filter :require_current_user!, :only => [:destroy]
   
   def new
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
                                       params[:user][:password])
 
       if user.nil?
-        @user = User.new
+        @user = User.new(params[:user])
         flash.now[:errors] = ["Credentials were wrong"]
         render :new
       else

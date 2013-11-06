@@ -7,40 +7,40 @@
 <input type="hidden" name="form_id" value="<%= @form.id %>">
 
 	<% @form.fields.each do |field| %>
-	<% if field.type == "check_box" %>
-		<%= field.label %>
-		<br>
-		
-		<% field.choices.each do |opt| %>
-			
-			<%= label_tag(checkbox_tag(field.id, opt), opt) %>
-			<%= send field.type + '_tag', checkbox_tag(field.id, opt) %>
+		<% if field.type == "check_box" %>
+			<%= field.label %>
 			<br>
-		<% end %>
 		
-	<% elsif field.type == "radio_button" %>
-		<%= field.label %>
-		<br>
-		
-		<% field.choices.each do |opt| %>
+			<% field.choices.each do |opt| %>
 			
-			<%= label_tag(radio_tag(field.id, opt), opt) %>
-			<%= send field.type + '_tag', create_tag(field.id), opt %>
+				<%= label_tag(checkbox_tag(field.id, opt), opt) %>
+				<%= send field.type + '_tag', checkbox_tag(field.id, opt) %>
+				<br>
+			<% end %>
+		
+		<% elsif field.type == "radio_button" %>
+			<%= field.label %>
 			<br>
+		
+			<% field.choices.each do |opt| %>
+			
+				<%= label_tag(radio_tag(field.id, opt), opt) %>
+				<%= send field.type + '_tag', create_tag(field.id), opt %>
+				<br>
+			<% end %>
+		
+		<% elsif field.type == "select" %>
+			<%= label_tag(create_tag(field.id), field.label) %>
+			<%= send field.type + '_tag', create_tag(field.id), options_for_select(get_selections(field)) %>
+			<br>
+		
+		<% else %>
+			<%= label_tag(create_tag(field.id), field.label) %>
+	 		<%= send field.type + '_tag', create_tag(field.id) %>
 		<% end %>
-		
-	<% elsif field.type == "select" %>
-		<%= label_tag(create_tag(field.id), field.label) %>
-		<%= send field.type + '_tag', create_tag(field.id), options_for_select(get_selections(field)) %>
 		<br>
-		
-	<% else %>
-		<%= label_tag(create_tag(field.id), field.label) %>
- 		<%= send field.type + '_tag', create_tag(field.id) %>
-	<% end %>
-	<br>
 	
-<% end %>
+	<% end %>
 	
 	<%= submit_tag "Update" %>
 <% end %>

@@ -13,6 +13,7 @@ class EntriesController < ApplicationController
   
   def new
     @form = current_user.forms.find(params[:form_id])
+    @entry = Entry.new
     render :new
   end
   

@@ -8,4 +8,12 @@ class Entry
   attr_accessible :form_id, :response_data
   
   belongs_to :form
+  
+  def method_missing(*args)
+    if this.form.has_field(args[0])
+      
+    else
+      super
+    end
+  end
 end

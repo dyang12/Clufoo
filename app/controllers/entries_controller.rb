@@ -31,14 +31,15 @@ class EntriesController < ApplicationController
   def edit
     @form = current_user.forms.find(params[:form_id])
     @entry = Entry.find(params[:id])
-    #DOES NOT WORKKK
     render :edit
   end
   
   def update
+    #NOT WORKING!!!
+    @form = current_user.forms.find(params[:form_id])
     @entry = Entry.find(params[:id])
     
-    if @entry.update_attributes(params[:entry])
+    if @entry.update_attributes(:response_data => params[:entry])
       render :show
     else
       flash.now[:errors] = @entry.errors.full_messages

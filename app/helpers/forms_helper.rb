@@ -14,10 +14,18 @@ module FormsHelper
   end
   
   def radio_tag(field_id, val)
-    create_tag(field_id) + "_" + val
+    "entry_" + field_id + "_" + val.downcase
   end
   
   def checkbox_tag(field_id, val)
-    create_tag(field_id) + "[" + val + "]"
+    field_id.to_s + "[" + val.downcase + "]"
+  end
+  
+  def checkbox_id(field_id, val)
+    field_id.to_s + "_" + val.downcase
+  end
+  
+  def checkbox_name(field_id)
+    "entry[" + field_id + "][]"
   end
 end

@@ -10,4 +10,10 @@ class Form
   
   many :fields
   many :entries
+  
+  def has_field_id?(field_id)
+    self.fields.each  { |field| return true if field.id == field_id }
+    
+    false
+  end
 end

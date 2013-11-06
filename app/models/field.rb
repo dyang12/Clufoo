@@ -14,16 +14,19 @@ class Field
   before_validation :generate_choices
   
   def display_type
-    if self.type == "text_field"
+    case self.type
+    when "text_field"
       return "Single Line Text"
-    elsif self.type == "text_area"
+    when "text_area"
       return "Paragraph Text"
-    elsif self.type == "check_box"
+    when "check_box"
       return "Checkbox"
-    elsif self.type == "select"
+    when "select"
       return "Dropdown"
-    else
+    when "radio_button"
       return "Multiple Choice"
+    else
+      return ""
     end
   end
   

@@ -1,0 +1,12 @@
+<h3><%= @form.title %></h3>
+<table>
+	<% @form.fields.each do |field| %>
+		<tr>
+			<td><%= field.label %></td>
+			<td><%= @entry[field.id] %></td>
+		</tr>
+	<% end %>
+</table>
+
+Edit
+Delete

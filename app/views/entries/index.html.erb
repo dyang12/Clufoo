@@ -1,0 +1,16 @@
+<% @form.title %>
+
+<table>
+	<tr>
+		<% @form.fields.each do |field| %>
+			<td><%= field.label %></td>
+		<% end %>
+	</tr>
+		<% @entries.each do |entry| %>
+			<tr>
+				<% @form.fields.each do |field| %>
+					<td><%= entry[field.id] %></td>
+				<% end %>
+			</tr>
+		<% end %>
+</table>

@@ -4,9 +4,10 @@ WufooClone::Application.routes.draw do
   
   resources :forms, :except =>[:index] do
     resources :fields, :except => [:index, :show]
+    resources :entries, :only => [:index]
   end
   
-  resource :entries, :except => [:new, :edit]
+  resources :entries, :except => [:new, :edit, :index]
   
   get "forms/:id/display", :to => "forms#display", :as => "display_form"
   

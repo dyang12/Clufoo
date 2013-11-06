@@ -12,4 +12,8 @@ module FormsHelper
     
     selections
   end
+  
+  def create_special_tag(tag, val)
+    tag + "_" + val
+  end
 end

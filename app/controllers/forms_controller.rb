@@ -4,12 +4,6 @@ class FormsController < ApplicationController
     render :show
   end
   
-  def display
-    @form = current_user.forms.find(params[:id])
-    @entry = Entry.new
-    render :display
-  end
-  
   def new
     @form = Form.new
     render :new

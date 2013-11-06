@@ -2,7 +2,7 @@
 	<h4><%= form.title %></h4>
 	<%= button_to "View Form", form_url(form), :method => :get %>
 	<%= button_to "Edit Form", edit_form_url(form), :method => :get %>
-	<%= button_to "Add Entry", display_form_url(form), :method => :get %>
+	<%= button_to "Add Entry", new_form_entry_url(form), :method => :get %>
 	<%= button_to "View Entries", form_entries_url(form), :method => :get %>
 	<%= button_to "Delete", form_url(form), :method => :delete %>
 </span>

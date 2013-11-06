@@ -11,11 +11,23 @@ class EntriesController < ApplicationController
     render :show
   end
   
+  def new
+    @form = current_user.forms.find(params[:form_id])
+    @entry = Entry.new
+    render :new
+  end
+  
   def create
     @entry = Entry.new(:form_id => params[:entry][:form_id])
     fail
     #whitelist keys??
     redirect_to form_entries(@entry.form_id)
+  end
+  
+  def edit
+    @form = current_user.forms.find(params[:form_id])
+    @entry = Entry.find(params[:id])
+    render :edit
   end
   
   def update

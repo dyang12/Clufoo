@@ -6,5 +6,9 @@ WufooClone::Application.routes.draw do
     resources :fields, :except => [:index, :show]
   end
   
+  resource :entries, :except => [:new, :edit]
+  
+  get "forms/:id/display", :to => "forms#display", :as => "display_form"
+  
   root :to => "sessions#new"
 end

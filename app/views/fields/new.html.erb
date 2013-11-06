@@ -15,11 +15,11 @@
 	
 	<label for="field-type">Field Type: </label>
 	<select name="field[type]" id="field-type">
-		<option value="text" <%= "selected" if @field.type == "text" %>>Single Line Text</option>
-		<option value="textarea" <%= "selected" if @field.type == "textarea" %>>Paragraph Text</option>
-		<option value="checkbox" <%= "selected" if @field.type == "checkbox" %>>Checkbox</option>
+		<option value="text_field" <%= "selected" if @field.type == "text_field" %>>Single Line Text</option>
+		<option value="text_area" <%= "selected" if @field.type == "text_area" %>>Paragraph Text</option>
+		<option value="check_box" <%= "selected" if @field.type == "check_box" %>>Checkbox</option>
 		<option value="select" <%= "selected" if @field.type == "select" %>>Dropdown</option>
-		<option value="radio" <%= "selected" if @field.type == "radio" %>>Multiple Choice</option>
+		<option value="radio_button" <%= "selected" if @field.type == "radio_button" %>>Multiple Choice</option>
 	</select>
 	<br>
 	

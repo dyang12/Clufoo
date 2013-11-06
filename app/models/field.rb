@@ -9,16 +9,16 @@ class Field
   
   timestamps!
   
-  attr_accessible :label, :type, :required, :uniqueness, :options
+  attr_accessible :label, :type, :required, :uniqueness, :choices
   
   before_validation :generate_choices
   
   def display_type
-    if self.type == "text"
+    if self.type == "text_field"
       return "Single Line Text"
-    elsif self.type == "textarea"
+    elsif self.type == "text_area"
       return "Paragraph Text"
-    elsif self.type == "checkbox"
+    elsif self.type == "check_box"
       return "Checkbox"
     elsif self.type == "select"
       return "Dropdown"
@@ -40,9 +40,13 @@ class Field
     self.choices.join(", ")
   end
   
+  def isNotText
+    self.type == "radio_button" || self.type == "check_box" || self.type == "select"
+  end
+  
   private
   def generate_choices
-    if self.type == "radio" || self.type == "checkbox"
+    if self.choices.empty? && self.isNotText
       self.choices = ["First Choice", "Second Choice", "Third Choice"]
     end
   end

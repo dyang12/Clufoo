@@ -9,5 +9,5 @@ class Form
   attr_accessible :title, :description, :fields
   
   many :fields
-  
+  many :entries
 end

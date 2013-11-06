@@ -1,0 +1,30 @@
+<h2><%= @form.title%></h2>
+<%= @form.description %>
+<br>
+<br>
+<%= form_tag entries_url do %>
+	<% @form.fields.each do |field| %>
+		<br>
+		<% if field.type == "check_box" %>
+		
+		<% elsif field.type == "select" %>	
+		
+		<% elsif field.type == "radio_button" %>
+			<%= field.label %>
+			<br>
+			
+			<% field.choices.each do |opt| %>
+				<!-- label is wrong!!!!! -->
+				<%= label_tag(create_tag(field.id), opt) %>
+				<%= send field.type + '_tag', create_tag(field.id), opt %>
+				<br>
+			<% end %>
+		<% else %>
+			<%= label_tag(create_tag(field.id), field.label) %>
+	 		<%= send field.type + '_tag', create_tag(field.id) %>
+		<% end %>
+		<br>
+	<% end %>
+	
+	<%= submit_tag "Submit" %>
+<% end %>

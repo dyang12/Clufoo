@@ -31,10 +31,21 @@ class FieldsController < ApplicationController
     @form = current_user.forms.find(params[:form_id])
     @field = @form.fields.find(params[:id])
     
+    if params[:field][:type] == "text_field" || params[:field][:type] == "text_area"
+      params[:field][:choices] = nil
+    elsif params[:choice]
+      choices = []
+    
+      params[:choice].each do |key, val|
+        choices << val unless val == ""
+      end
+
+      params[:field][:choices] = choices
+    end
+    
     unless params[:field][:required]
       @field.required = nil
     end
-    
     unless params[:field][:uniqueness]
       @field.uniqueness = nil
     end

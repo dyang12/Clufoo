@@ -4,7 +4,7 @@ Field Type: <%= field.display_type %>
 <br>
 Options: <%= field.display_options %>
 <br>
-<% if field.type == "radio" || "checkbox" %>
+<% if field.isNotText %>
 	Choices: <%= field.display_choices %>
 	<br>
 <% end %>

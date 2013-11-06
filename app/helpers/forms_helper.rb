@@ -13,7 +13,11 @@ module FormsHelper
     selections
   end
   
-  def create_special_tag(tag, val)
-    tag + "_" + val
+  def radio_tag(field_id, val)
+    create_tag(field_id) + "_" + val
+  end
+  
+  def checkbox_tag(field_id, val)
+    create_tag(field_id) + "[" + val + "]"
   end
 end

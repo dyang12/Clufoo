@@ -33,7 +33,7 @@ class FormsController < ApplicationController
     @form = current_user.forms.find(params[:id])
     
     if @form.update_attributes(params[:form])
-      redirect_to form_url(@form.id)
+      render :show
     else
       flash.now[:errors] = @form.errors.full_messages
       render :edit

@@ -1,5 +1,8 @@
-<h2><%= @form.title %></h2>
+<%= button_to "Back", user_url(current_user), :method => :get %>
 
+<h2><%= @form.title %></h2>
+<%= button_to "New", new_form_entry_url(@form.id), :method => :get %>
+<br>
 <table>
 	<tr>
 		<% @form.fields.each do |field| %>
@@ -9,8 +12,11 @@
 		<% @entries.each do |entry| %>
 			<tr>
 				<% @form.fields.each do |field| %>
-					<td><%= entry[field.id] %></td>
+					<td><%= display_attribute(entry, field) %></td>
 				<% end %>
+				<td><%= button_to "View", entry_url(entry.id), :method => :get %></td>
+				<td><%= button_to "Edit", edit_form_entry_url(@form.id, entry.id), :method => :get %></td>
+				<td><%= button_to "Delete", entry_url(entry.id), :method => :delete %></td>
 			</tr>
 		<% end %>
 </table>

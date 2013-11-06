@@ -13,24 +13,36 @@ class EntriesController < ApplicationController
   
   def new
     @form = current_user.forms.find(params[:form_id])
-    @entry = Entry.new
     render :new
   end
   
   def create
-    @entry = Entry.new(:form_id => params[:entry][:form_id])
-    fail
-    #whitelist keys??
-    redirect_to form_entries(@entry.form_id)
+    @entry = Entry.new(:form_id => params[:form_id], :response_data => params[:entry])
+    
+    if @entry.save
+      redirect_to form_entries_url(@entry.form_id)
+    else
+      flash.now[:errors] = @entry.errors.full_messages
+      render :new
+    end
   end
   
   def edit
     @form = current_user.forms.find(params[:form_id])
     @entry = Entry.find(params[:id])
+    #DOES NOT WORKKK
     render :edit
   end
   
   def update
+    @entry = Entry.find(params[:id])
+    
+    if @entry.update_attributes(params[:entry])
+      render :show
+    else
+      flash.now[:errors] = @entry.errors.full_messages
+      render :edit
+    end
   end
   
   def destroy

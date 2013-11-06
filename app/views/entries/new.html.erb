@@ -3,7 +3,7 @@
 <br>
 <br>
 <%= form_tag entries_url do %>
-<input type="hidden" name="entry[form_id]" value="<%= @form.id %>">
+<input type="hidden" name="form_id" value="<%= @form.id %>">
 
 	<% @form.fields.each do |field| %>
 		<% if field.type == "check_box" %>
@@ -12,8 +12,8 @@
 			
 			<% field.choices.each do |opt| %>
 				
-				<%= label_tag(create_special_tag(create_tag(field.id), opt), opt) %>
-				<%= send field.type + '_tag', create_special_tag(create_tag(field.id), opt) %>
+				<%= label_tag(checkbox_tag(field.id, opt), opt) %>
+				<%= send field.type + '_tag', checkbox_tag(field.id, opt) %>
 				<br>
 			<% end %>
 			
@@ -23,13 +23,13 @@
 			
 			<% field.choices.each do |opt| %>
 				
-				<%= label_tag(create_special_tag(create_tag(field.id), opt), opt) %>
+				<%= label_tag(radio_tag(field.id, opt), opt) %>
 				<%= send field.type + '_tag', create_tag(field.id), opt %>
 				<br>
 			<% end %>
 			
 		<% elsif field.type == "select" %>
-			<%= field.label %>:
+			<%= label_tag(create_tag(field.id), field.label) %>
 			<%= send field.type + '_tag', create_tag(field.id), options_for_select(get_selections(field)) %>
 			<br>
 			

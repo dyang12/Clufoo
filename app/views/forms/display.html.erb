@@ -4,12 +4,7 @@
 <br>
 <%= form_tag entries_url do %>
 	<% @form.fields.each do |field| %>
-		<br>
-		<% if field.type == "check_box" %>
-		
-		<% elsif field.type == "select" %>	
-		
-		<% elsif field.type == "radio_button" %>
+		<% if field.type == "check_box" || field.type == "radio_button" %>
 			<%= field.label %>
 			<br>
 			
@@ -19,6 +14,11 @@
 				<%= send field.type + '_tag', create_tag(field.id), opt %>
 				<br>
 			<% end %>
+			
+		<% elsif field.type == "select" %>
+			<%= field.label %>:
+			<%= send field.type + '_tag', create_tag(field.id), options_for_select(get_selections(field)) %>
+			<br>
 		<% else %>
 			<%= label_tag(create_tag(field.id), field.label) %>
 	 		<%= send field.type + '_tag', create_tag(field.id) %>

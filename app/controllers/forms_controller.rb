@@ -1,4 +1,9 @@
 class FormsController < ApplicationController
+  def index
+    @forms = current_user.forms
+    render :index
+  end
+  
   def show
     @form = current_user.forms.find(params[:id])
     render :show

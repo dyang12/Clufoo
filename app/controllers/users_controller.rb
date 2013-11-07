@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   
   def show
     @user = current_user
-    @forms = @user.forms
     render :show
   end
   
@@ -20,7 +19,7 @@ class UsersController < ApplicationController
       
       if @user.save
         self.current_user = @user
-        redirect_to user_url(@user.id)
+        redirect_to forms_url
       else
         flash.now[:errors] = @user.errors.full_messages
         render :new

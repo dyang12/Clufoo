@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       render :new
     else
       self.current_user = user
-      redirect_to user_url(user)
+      redirect_to forms_url
     end
   end
 

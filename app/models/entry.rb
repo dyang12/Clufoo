@@ -19,16 +19,16 @@ class Entry
   end
   
   def response_data_validation
-    response_data.each do |key, val|
-      field = @form.fields.find(key)
-      
-      required_validation(val, field.label) if field.required
-      uniqueness_validation(val, field) if field.uniqueness
+    @form.fields.each do |field|
+      attribute = response_data[field.id.to_s]
+      p attribute
+      required_validation(attribute, field.label) if field.required
+      uniqueness_validation(attribute, field) if field.uniqueness
     end
   end
   
   def required_validation(val, label)
-    if val.length == 0
+    if val.nil? || val.length == 0
       errors[label.to_sym] << "label cannot be blank."
     end
   end

@@ -17,6 +17,9 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'therubyracer'
+  gem 'less-rails'
+  gem 'twitter-bootstrap-rails'
 end
 
 group :development do
@@ -34,7 +37,6 @@ gem 'mongo_mapper'
 gem 'bson_ext'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', :require => 'bcrypt'
-
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

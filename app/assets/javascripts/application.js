@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require underscore
 //= require backbone
+//= require bootstrap
 //= require wufoo_clone
 //= require_tree ../templates
 //= require_tree ./models

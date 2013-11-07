@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '1.9.3'
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -35,6 +35,8 @@ gem 'ejs'
 gem 'backbone-on-rails'
 gem 'mongo_mapper'
 gem 'bson_ext'
+gem 'rails_12factor', group: :production
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', :require => 'bcrypt'
 # To use Jbuilder templates for JSON

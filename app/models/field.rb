@@ -47,6 +47,12 @@ class Field
     self.type == "radio_button" || self.type == "check_box" || self.type == "select"
   end
   
+  def self.dup(field)
+    attributes = field.attributes
+    attributes.delete("_id")
+    Field.new(attributes)
+  end
+  
   private
   def generate_choices
     if self.choices.empty? && self.isNotText

@@ -57,10 +57,10 @@
 	              <li><a class="navbar-btn"><%= button_to "Reports", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
 	              <li><a class="navbar-btn"><%= button_to "Users", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
 	              <li><a class="navbar-btn"><%= button_to "Account", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Help", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
 							<% end %>
             </ul>
 						<ul class="nav pull-right">
+							<li><a class="navbar-btn"><%= button_to "Help", {}, :class => "btn btn-inverse" %></a></li>
 							<% if current_user %>
 								<li><a class="navbar-btn"><%= button_to "Logout", session_url, :method => :delete, :class => "btn btn-inverse" %></a></li>
 							<% else %>

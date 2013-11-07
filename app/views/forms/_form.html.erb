@@ -6,11 +6,12 @@
 		<li><%= link_to "View" %></li>
 		<li><%= link_to "Notifications" %></li>
 		<li><%= link_to "Payment" %></li>
+		<li><%= link_to "Code" %></li>
 		<li class="pull-right">
 			<%= button_to "Delete", form_url(form), :method => :delete, :class => "btn btn-mini btn-danger"%>
 		</li>
 		<li class="pull-right">
-			<%= button_to "Duplicate", {}, :class => "btn btn-mini btn-success"%>
+			<%= button_to "Duplicate", duplicate_form_url(form), :method => :post, :class => "btn btn-mini btn-success"%>
 		</li>
 	</ul>
 	

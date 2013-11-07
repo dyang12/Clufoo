@@ -22,7 +22,7 @@ class FormsController < ApplicationController
       forms.push(@form)
       current_user.update_attributes(:forms => forms)
       
-      redirect_to form_url(@form.id)
+      redirect_to forms_url(current_user)
     else
       flash.now[:errors] = @form.errors.full_messages
       render :new
@@ -43,6 +43,23 @@ class FormsController < ApplicationController
       flash.now[:errors] = @form.errors.full_messages
       render :edit
     end
+  end
+  
+  def duplicate
+    old_form = current_user.forms.find(params[:id])
+    fields = old_form.fields.map {|field| Field.dup(field) }
+    
+    attributes = old_form.attributes
+    attributes.delete("_id")
+    attributes[:fields] = fields
+    
+    @form = Form.new(attributes)
+    
+    forms = current_user.forms
+    forms.push(@form)
+    current_user.update_attributes(:forms => forms)
+      
+    redirect_to forms_url(current_user)
   end
   
   def destroy

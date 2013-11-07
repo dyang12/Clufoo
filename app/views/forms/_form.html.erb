@@ -1,11 +1,18 @@
-<span>
-	<h4><%= form.title %></h4>
-	<div>
-		<%= button_to "View Form", form_url(form), :method => :get %>
-		<%= button_to "Edit Form", edit_form_url(form), :method => :get %>
-		<%= button_to "Add Entry", new_form_entry_url(form), :method => :get %>
-		<%= button_to "View Entries", form_entries_url(form), :method => :get %>
-		<%= button_to "Delete", form_url(form), :method => :delete %>
-	</div>
-</span>
+<div class="form-show">
+	<h4 class= "form-title"><%= form.title %></h4>
+	<ul class="inline">
+		<li><%= link_to "Entries", form_entries_url(form), :method => :get %></li>
+		<li><%= link_to "Edit" %></li>
+		<li><%= link_to "View" %></li>
+		<li><%= link_to "Notifications" %></li>
+		<li><%= link_to "Payment" %></li>
+		<li class="pull-right">
+			<%= button_to "Delete", form_url(form), :method => :delete, :class => "btn btn-mini btn-danger"%>
+		</li>
+		<li class="pull-right">
+			<%= button_to "Duplicate", {}, :class => "btn btn-mini btn-success"%>
+		</li>
+	</ul>
+	
+</div>
 <br>

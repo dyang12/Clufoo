@@ -45,15 +45,15 @@
           <div class="container nav-collapse" style="height: 50px">
             <ul class="nav" style="height: 50px">
 							<% if current_user %>
-	              <li><a class="navbar-btn"><%= button_to "Forms", user_url(current_user.id), :method => :get %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Reports" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Users" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Account" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Help" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Forms", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Reports", {}, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Users", {}, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Account", {}, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Help", {}, :class => "btn btn-warning" %></a></li>
 							<% end %>
             </ul>
 						<ul class = "nav pull-right">
-							<li><a class="navbar-btn"><%= button_to "Logout", session_url, :method => :delete %></a></li>
+							<li><a class="navbar-btn"><%= button_to "Logout", session_url, :method => :delete, :class => "btn btn-inverse" %></a></li>
 						</ul>
           </div><!--/.nav-collapse -->
         </div>

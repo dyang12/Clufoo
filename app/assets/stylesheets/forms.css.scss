@@ -1,3 +1,20 @@
 // Place all the styles related to the Forms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-index {
+	width: 90%;
+	padding: 2%;
+	border: 0px;
+	margin: 3%;
+	background-color: #ffffff;
+}
+
+.form-show {
+	border: 3px solid gray;
+}
+.form-title {
+	background-color: #d8d8d8;
+	padding: 5px;
+	margin: 0;
+}

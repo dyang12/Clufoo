@@ -52,6 +52,6 @@ class FormsController < ApplicationController
     
     current_user.update_attributes(:forms => forms)
     
-    redirect_to user_url(current_user.id)
+    redirect_to forms_url(current_user.id)
   end
 end

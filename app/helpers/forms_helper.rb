@@ -28,4 +28,12 @@ module FormsHelper
   def checkbox_name(field_id)
     "entry[" + field_id + "][]"
   end
+  
+  def labels_to_display(form)
+    fields = []
+    form.fields.each_with_index do |field, i|
+      fields << field if i < 3
+    end
+    fields
+  end
 end

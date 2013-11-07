@@ -1,0 +1,31 @@
+<div class="navbar navbar-fixed-bottom">
+	<div class="navbar-table">
+		<div class="container">
+			<h5 class="table-title">Recent Entries</h5>
+			<div>
+				<table class="table-header">
+					<tr>
+						<% labels_to_display(@form).each do |field| %>
+							<td class="table-column"><em><%= field.label %></em></td>
+						<% end %>
+						<td class="table-column"><em>Created At</em></td>
+						<td class="table-column"><em>Updated At</em></td>
+					</tr>
+				</tabel>
+				<table class="entry-table table-hover">
+					<% @form.entries.each do |entry| %>
+						<tr>
+							<% labels_to_display(@form).each do |field| %>
+								<td class="table-column">
+									<%= shrink(entry.response_data[field.id.to_s]) %>
+								</td>
+							<% end %>
+							<td class="table-column"><%= entry.created_at %></td>
+							<td class="table-column"><%= entry.updated_at %></td>
+						</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

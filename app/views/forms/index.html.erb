@@ -1,8 +1,6 @@
-
 <div class="form-index">
 	<div class="pull-right"><%= button_to "New Form", new_form_url, :method => :get, :class => "btn btn-info" %></div>
 	<h3>Form Manager</h3>
-	<br>
 	<br>
 
 	<%= render :partial => "form", :collection => @forms %>

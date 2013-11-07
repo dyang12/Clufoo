@@ -1,3 +1,30 @@
 // Place all the styles related to the Entries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table, th, td
+{
+border: 1px solid gray;
+}
+.navbar-table {
+	background-color: #2E2E2E;
+	background-image: none;
+	background-repeat: no-repeat;
+	filter: none;
+	height: 200px;
+}
+.table-title {
+	color: yellow;
+}
+.table-header {
+	color: white;
+	width: 100%;
+	background-color: #585858;
+}
+.table-column {
+	width: 20%;
+	height: 14%;
+}
+.entry-table {
+	background-color: white;
+	width: 100%;
+}

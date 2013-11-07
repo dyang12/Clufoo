@@ -18,8 +18,11 @@ class EntriesController < ApplicationController
   end
   
   def create
-    @entry = Entry.new(:form_id => params[:form_id], :response_data => params[:entry])
-    
+    @form = current_user.forms.find(params[:form_id])
+    @entry = Entry.new(:user_id => current_user.id,
+                       :form_id => params[:form_id],
+                       :response_data => params[:entry])
+
     if @entry.save
       redirect_to form_entries_url(@entry.form_id)
     else
@@ -35,7 +38,6 @@ class EntriesController < ApplicationController
   end
   
   def update
-    #NOT WORKING!!!
     @form = current_user.forms.find(params[:form_id])
     @entry = Entry.find(params[:id])
     

@@ -2,25 +2,25 @@ class EntriesController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @form = current_user.forms.find(params[:form_id])
+    @form = current_account.forms.find(params[:form_id])
     @entries = @form.entries
     render :index
   end
   
   def show
     @entry = Entry.find(params[:id])
-    @form = current_user.forms.find(@entry.form_id)
+    @form = current_account.forms.find(@entry.form_id)
     render :show
   end
   
   def new
-    @form = current_user.forms.find(params[:form_id])
+    @form = current_account.forms.find(params[:form_id])
     @entry = Entry.new
     render :new
   end
   
   def create
-    @form = current_user.forms.find(params[:form_id])
+    @form = current_account.forms.find(params[:form_id])
     @entry = Entry.new(:user_id => current_user.id,
                        :form_id => params[:form_id],
                        :response_data => params[:entry])
@@ -34,13 +34,13 @@ class EntriesController < ApplicationController
   end
   
   def edit
-    @form = current_user.forms.find(params[:form_id])
+    @form = current_account.forms.find(params[:form_id])
     @entry = Entry.find(params[:id])
     render :edit
   end
   
   def update
-    @form = current_user.forms.find(params[:form_id])
+    @form = current_account.forms.find(params[:form_id])
     @entry = Entry.find(params[:id])
     
     if @entry.update_attributes(:response_data => params[:entry])

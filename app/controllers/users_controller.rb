@@ -18,14 +18,13 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       
       if @user.save
-        self.current_user = @user
-        redirect_to forms_url
+        redirect_to account(current_user.account_id)
       else
         flash.now[:errors] = @user.errors.full_messages
         render :new
       end
     else
-      flash.now[:errors] = ["Password does not match"]
+      flash.now[:errors] = ["Passwords do not match"]
       @user = User.new(params[:user])
       render :new
     end    

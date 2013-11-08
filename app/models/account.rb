@@ -1,6 +1,6 @@
 class Account
   include MongoMapper::Document
-  key :creator_id, ObjectId
+  key :creator_id, ObjectId, :required => true
   
   many :forms
   many :users

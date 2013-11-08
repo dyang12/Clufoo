@@ -1,7 +1,9 @@
 WufooClone::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   resources :users, :only => [:new, :create, :show]
-  resources :account, :only => [:new, :create, :show]
+  resources :accounts, :only => [:new, :create, :show] do
+    resources :users, :only => [:index]
+  end
   
   resources :forms do
     resources :fields, :except => [:index, :show]

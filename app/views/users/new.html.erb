@@ -1,4 +1,4 @@
-<h3>Sign Up</h3>
+<h3>Create User</h3>
 
 <%= render :partial => "layouts/errors" %>
 
@@ -7,9 +7,17 @@
 				 name="authenticity_token"
 				 value="<%= form_authenticity_token %>">
 	
+	<input type="hidden" name="user[account_id]" 
+				 value="<%= current_user.account_id%>">
+	
 	<label for="user-username">Username: </label>
 	<input type="text" name="user[username]"
 				 value="<%= @user.username %>" id="user-username">
+	<br>
+	
+	<label for="user-email">Email: </label>
+	<input type="text" name="user[email]"
+				 value="<%= @user.email %>" id="user-email">
 	<br>
 	
 	<label for="user-password">Password: </label>
@@ -20,5 +28,5 @@
 	<input type="password" name="user[repeat]" id="user-repeat">
 	<br>
 	
-	<p><input class="btn" type="submit" value="Sign Up"></p>
+	<p><input class="btn" type="submit" value="Create User"></p>
 </form>

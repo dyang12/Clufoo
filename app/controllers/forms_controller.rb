@@ -2,12 +2,12 @@ class FormsController < ApplicationController
   before_filter :require_current_user!
   
   def index
-    @forms = current_user.forms
+    @forms = current_account.forms
     render :index
   end
   
   def show
-    @form = current_user.forms.find(params[:id])
+    @form = current_account.forms.find(params[:id])
     render :show
   end
   
@@ -20,11 +20,11 @@ class FormsController < ApplicationController
     @form = Form.new(params[:form])
     
     if @form.valid?
-      forms = current_user.forms
+      forms = current_account.forms
       forms.push(@form)
-      current_user.update_attributes(:forms => forms)
+      current_account.update_attributes(:forms => forms)
       
-      redirect_to forms_url(current_user)
+      redirect_to forms_url(current_account)
     else
       flash.now[:errors] = @form.errors.full_messages
       render :new
@@ -32,12 +32,12 @@ class FormsController < ApplicationController
   end
   
   def edit
-    @form = current_user.forms.find(params[:id])
+    @form = current_account.forms.find(params[:id])
     render :edit
   end
   
   def update
-    @form = current_user.forms.find(params[:id])
+    @form = current_account.forms.find(params[:id])
     
     if @form.update_attributes(params[:form])
       render :show
@@ -48,7 +48,7 @@ class FormsController < ApplicationController
   end
   
   def duplicate
-    old_form = current_user.forms.find(params[:id])
+    old_form = current_account.forms.find(params[:id])
     fields = old_form.fields.map {|field| Field.dup(field) }
     
     attributes = old_form.attributes
@@ -57,20 +57,20 @@ class FormsController < ApplicationController
     
     @form = Form.new(attributes)
     
-    forms = current_user.forms
+    forms = current_account.forms
     forms.push(@form)
-    current_user.update_attributes(:forms => forms)
+    current_account.update_attributes(:forms => forms)
       
-    redirect_to forms_url(current_user)
+    redirect_to forms_url(current_account)
   end
   
   def destroy
-    @form = current_user.forms.find(params[:id])
-    forms = current_user.forms
+    @form = current_account.forms.find(params[:id])
+    forms = current_account.forms
     forms.delete(@form)
     
-    current_user.update_attributes(:forms => forms)
+    current_account.update_attributes(:forms => forms)
     
-    redirect_to forms_url(current_user.id)
+    redirect_to forms_url(current_account)
   end
 end

@@ -7,6 +7,10 @@ module SessionsHelper
   def current_user
      @current_user || User.find_by_session_token(session[:session_token])
   end
+  
+  def current_account
+    @current_account || Account.find(current_user.account_id)
+  end
 
   def logout_current_user!
      current_user.reset_session_token!

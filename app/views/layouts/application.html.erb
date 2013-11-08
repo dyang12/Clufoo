@@ -60,7 +60,7 @@
 							<% end %>
             </ul>
 						<ul class="nav pull-right">
-							<li><a class="navbar-btn"><%= button_to "Help", {}, :class => "btn btn-inverse" %></a></li>
+							<li><a class="navbar-btn"><%= button_to "Help", help_url, :method => :get, :class => "btn btn-inverse" %></a></li>
 							<% if current_user %>
 								<li><a class="navbar-btn"><%= button_to "Logout", session_url, :method => :delete, :class => "btn btn-inverse" %></a></li>
 							<% else %>

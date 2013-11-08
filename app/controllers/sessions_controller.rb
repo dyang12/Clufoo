@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_filter :require_current_user!, :only => [:destroy]
   
   def new
-    @user = User.new;
+    @user = User.new
     render :new
   end
   

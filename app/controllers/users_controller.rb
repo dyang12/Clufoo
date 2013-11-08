@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_no_current_user!, :only => [:new, :create]
-  before_filter :require_current_user!, :only => [:show]
+  before_filter :require_current_user!
   
   def show
     @user = current_user
@@ -28,5 +27,17 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       render :new
     end    
+  end
+  
+  def edit
+    render :edit
+  end
+  
+  def update
+    
+  end
+  
+  def destroy
+    
   end
 end

@@ -1,4 +1,7 @@
 class AccountsController < ApplicationController
+  before_filter :require_no_current_user!, :only => [:new, :create]
+  before_filter :require_current_user!, :only => [:show]
+  
   def show
     render :show
   end

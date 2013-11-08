@@ -1,6 +1,6 @@
 WufooClone::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
-  resources :users, :only => [:new, :create, :show]
+  resources :users, :except => [:index]
   resources :accounts, :only => [:new, :create, :show] do
     resources :users, :only => [:index]
   end

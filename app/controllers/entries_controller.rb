@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+  before_filter :require_current_user!
+  
   def index
     @form = current_user.forms.find(params[:form_id])
     @entries = @form.entries

@@ -1,4 +1,6 @@
 class FormsController < ApplicationController
+  before_filter :require_current_user!
+  
   def index
     @forms = current_user.forms
     render :index

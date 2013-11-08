@@ -1,4 +1,6 @@
 class FieldsController < ApplicationController
+  before_filter :require_current_user!
+  
   def new
     @form = current_user.forms.find(params[:form_id])
     @field = Field.new

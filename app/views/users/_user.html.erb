@@ -9,11 +9,11 @@
 				</li>
 					<% if user.user_type == "User" %>
 						<li class="pull-right">
-							<%= button_to "Make Admin", user_url(user), :method => :put, :class => "btn btn-mini btn-primary" %>
+							<%= button_to "Make Admin", toggle_user_url(user), :method => :put, :class => "btn btn-mini btn-primary" %>
 						</li>
 					<% else %>
 						<li class="pull-right">
-							<%= button_to "Remove Admin", user_url(user), :method => :put, :class => "btn btn-mini btn-primary" %>
+							<%= button_to "Remove Admin", toggle_user_url(user), :method => :put, :class => "btn btn-mini btn-primary" %>
 						</li>
 					<% end %>
 			<% end %>

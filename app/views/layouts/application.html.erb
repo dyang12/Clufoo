@@ -55,8 +55,8 @@
 							<% if current_user %>
 	              <li><a class="navbar-btn"><%= button_to "Forms", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
 	              <li><a class="navbar-btn"><%= button_to "Reports", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Users", account_url(current_user.account_id), :method => :get, :class => "btn btn-warning" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Account", user_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Users", user_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Account", account_url(current_user.account_id), :method => :get, :class => "btn btn-warning" %></a></li>
 							<% end %>
             </ul>
 						<ul class="nav pull-right">

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       @user = User.new(params[:user])
       
       if @user.save
-        redirect_to account_url(current_user.account_id)
+        redirect_to user_url(current_user)
       else
         flash.now[:errors] = @user.errors.full_messages
         render :new
@@ -33,18 +33,29 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    
+    if @user.update_attributes(params[:user])
+      redirect_to user_url(current_user)
+    else
+      flash[:errors] = @user.errors.full_messages
+      redirect_to user_url(current_user)
+    end
+  end
+  
+  def toggle_admin
+    @user = User.find(params[:id])
     if @user.admin
       @user.update_attributes(:admin => nil)
     else
       @user.update_attributes(:admin => 't')
     end
     
-    redirect_to account_url(current_account)
+    redirect_to user_url(current_user)
   end
   
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to account_url(current_account)
+    redirect_to user_url(current_user)
   end
 end

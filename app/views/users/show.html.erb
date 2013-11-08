@@ -1,4 +1,18 @@
 <div class="inner-body">
-	<h3>Account Manager</h3>
-
+	<% if current_user.admin %>
+		<div class="pull-right">
+			<%= button_to "New User", new_user_url, :method => :get, :class => "btn btn-info" %>
+		</div>
+	<% end %>
+	<h3>User Manager</h3>
+	<div class="row">
+		<div class="span4">
+			<%= render :partial => "user", :collection => current_account.users %>
+		</div>
+		<div class="span">
+		</div>
+		<div class="span4">
+			<%= render :partial => "edit"%>
+		</div>
+	</div>
 </div>

@@ -11,7 +11,7 @@ class User
   
   timestamps!
   
-  attr_accessible :username, :password, :email, :admin, :forms
+  attr_accessible :account_id, :username, :password, :email, :admin, :forms
   
   validates_length_of :password, :minimum => 6, :allow_nil => true
   

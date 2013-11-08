@@ -2,19 +2,22 @@ class User
   include MongoMapper::Document
   attr_reader :password
   
+  key :account_id, ObjectId, :required => true
   key :username, String, :required => true, :unique => true
+  key :email, String, :required => true, :unique => true
   key :password_digest, String, :required => true
   key :session_token, String, :required => true
+  key :admin, String
   
   timestamps!
   
-  attr_accessible :username, :password, :forms
+  attr_accessible :username, :password, :email, :admin, :forms
   
   validates_length_of :password, :minimum => 6, :allow_nil => true
   
   before_validation :ensure_session_token
   
-  many :forms
+  belongs_to :account
   
   def self.find_by_credentials(username, password)
      user = User.find_by_username(username)

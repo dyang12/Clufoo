@@ -30,6 +30,14 @@ group :development do
   gem 'meta_request'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'guard-rspec'
+end
+
 gem 'jquery-rails'
 gem 'ejs'
 gem 'backbone-on-rails'

@@ -1,7 +1,7 @@
 class Entry
   include MongoMapper::Document
-  key :user_id, ObjectId, :required
-  key :form_id, ObjectId, :required
+  key :user_id, ObjectId, :required => true
+  key :form_id, ObjectId, :required => true
   key :response_data, Hash
   
   timestamps!
@@ -10,6 +10,7 @@ class Entry
   
   validate :response_data_validation
   
+  many :comments
   belongs_to :form
   
   before_validation :get_form

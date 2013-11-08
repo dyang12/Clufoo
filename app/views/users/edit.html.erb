@@ -1,0 +1,35 @@
+<h3>Edit User</h3>
+
+<%= render :partial => "layouts/errors" %>
+
+<form action="<%= users_url %>" method="post" accept-charset="utf-8">
+	<input type="hidden" 
+				 name="authenticity_token"
+				 value="<%= form_authenticity_token %>">
+	
+	<input type="hidden" name="_method" value="put">
+	
+	<label for="user-username">Username: </label>
+	<input type="text" name="user[username]"
+				 value="<%= @user.username %>" id="user-username">
+	<br>
+	
+	<label for="user-email">Email: </label>
+	<input type="text" name="user[email]"
+				 value="<%= @user.email %>" id="user-email">
+	<br>
+	
+	<label for="user-password">Password: </label>
+	<input type="password" name="user[password]" id="user-password">
+	<br>
+
+	<label for="user-repeat">Confirm Password: </label>
+	<input type="password" name="user[repeat]" id="user-repeat">
+	<br>
+	
+	<label for="user-admin">
+	<input type="checkbox" name="user[admin]" value="y" id="user-admin" "<%= "checked" if @user.admin %>">
+	Administrator?</label>
+	
+	<p><input class="btn" type="submit" value="Update User"></p>
+</form>

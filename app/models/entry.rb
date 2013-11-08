@@ -1,12 +1,12 @@
 class Entry
   include MongoMapper::Document
-  key :user_id, ObjectId, :required => true
+  key :account_id, ObjectId, :required => true
   key :form_id, ObjectId, :required => true
   key :response_data, Hash
   
   timestamps!
   
-  attr_accessible :user_id, :form_id, :response_data
+  attr_accessible :account_id, :form_id, :response_data
   
   validate :response_data_validation
   
@@ -16,7 +16,7 @@ class Entry
   before_validation :get_form
   
   def get_form
-     @form = User.find(user_id).forms.find(form_id)
+     @form = Account.find(account_id).forms.find(form_id)
   end
   
   def response_data_validation

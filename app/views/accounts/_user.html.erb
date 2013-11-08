@@ -1,0 +1,22 @@
+<div class="el-show">
+	<h4 class= "el-title"><%= user.username %></h4>
+	<ul class="inline">
+		<li><%= user.user_type %></li>
+		<% if current_user.admin %>
+			<%  unless current_account.is_creator?(user.id) %>
+				<li class="pull-right">
+					<%= button_to "Delete", user_url(user), :method => :delete, :class => "btn btn-mini btn-danger" %>
+				</li>
+					<% if user.user_type == "User" %>
+						<li class="pull-right">
+							<%= button_to "Make Admin", user_url(user), :method => :put, :class => "btn btn-mini btn-primary" %>
+						</li>
+					<% else %>
+						<li class="pull-right">
+							<%= button_to "Remove Admin", user_url(user), :method => :put, :class => "btn btn-mini btn-primary" %>
+						</li>
+					<% end %>
+			<% end %>
+		<% end %>
+	</ul>
+</div>

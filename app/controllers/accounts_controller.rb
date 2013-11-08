@@ -3,6 +3,7 @@ class AccountsController < ApplicationController
   before_filter :require_current_user!, :only => [:show]
   
   def show
+    @account = current_account
     render :show
   end
   
@@ -14,6 +15,7 @@ class AccountsController < ApplicationController
   def create
     if(params[:user][:password] == params[:user][:repeat])
       params[:user][:repeat] = nil
+      params[:user][:admin] = 't'
       
       @account = Account.new
       params[:user][:account_id] = @account.id

@@ -14,10 +14,12 @@ class UsersController < ApplicationController
   def create
     if(params[:user][:password] == params[:user][:repeat])
       params[:user][:repeat] = nil
+      params[:user][:account_id] = current_account.id
+      
       @user = User.new(params[:user])
       
       if @user.save
-        redirect_to account(current_user.account_id)
+        redirect_to account_url(current_user.account_id)
       else
         flash.now[:errors] = @user.errors.full_messages
         render :new
@@ -28,16 +30,21 @@ class UsersController < ApplicationController
       render :new
     end    
   end
-  
-  def edit
-    render :edit
-  end
-  
+
   def update
+    @user = User.find(params[:id])
+    if @user.admin
+      @user.update_attributes(:admin => nil)
+    else
+      @user.update_attributes(:admin => 't')
+    end
     
+    redirect_to account_url(current_account)
   end
   
   def destroy
-    
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to account_url(current_account)
   end
 end

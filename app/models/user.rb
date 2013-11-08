@@ -43,6 +43,16 @@ class User
      self.save!
   end
   
+  def user_type
+    if account.is_creator?(id)
+      return "Account creator"
+    elsif admin
+      return "Admin"
+    end
+    
+    return "User"
+  end
+  
   private
   def ensure_session_token
       self.session_token ||= self.class.generate_session_token

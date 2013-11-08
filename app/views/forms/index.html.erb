@@ -1,5 +1,9 @@
 <div class="inner-body">
-	<div class="pull-right"><%= button_to "New Form", new_form_url, :method => :get, :class => "btn btn-info" %></div>
+	<% if current_user.admin %>
+		<div class="pull-right">
+			<%= button_to "New Form", new_form_url, :method => :get, :class => "btn btn-info" %>
+		</div>
+	<% end %>
 	<h3>Form Manager</h3>
 	<br>
 

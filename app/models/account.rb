@@ -5,7 +5,7 @@ class Account
   many :forms
   many :users
   
-  def is_creator?(user)
-    creator_id == user.id
+  def is_creator?(user_id)
+    creator_id == user_id
   end
 end

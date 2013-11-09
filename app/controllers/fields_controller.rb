@@ -2,14 +2,14 @@ class FieldsController < ApplicationController
   before_filter :require_current_user!
   
   def new
-    @form = current_user.forms.find(params[:form_id])
+    @form = Form.find(params[:form_id])
     @field = Field.new
     render :new
   end
 
   def create
     @field = Field.new(params[:field])
-    @form = current_user.forms.find(params[:form_id])
+    @form = Form.find(params[:form_id])
     
     if @field.valid?
       fields = @form.fields
@@ -24,13 +24,13 @@ class FieldsController < ApplicationController
   end
   
   def edit
-    @form = current_user.forms.find(params[:form_id])
+    @form = Form.find(params[:form_id])
     @field = @form.fields.find(params[:id])
     render :edit
   end
   
   def update
-    @form = current_user.forms.find(params[:form_id])
+    @form = Form.find(params[:form_id])
     @field = @form.fields.find(params[:id])
     
     if params[:field][:type] == "text_field" || params[:field][:type] == "text_area"
@@ -61,7 +61,7 @@ class FieldsController < ApplicationController
   end
   
   def destroy
-    @form = current_user.forms.find(params[:form_id])
+    @form = Form.find(params[:form_id])
     @field = @form.fields.find(params[:id])
     fields = @form.fields
     fields.delete(@field)

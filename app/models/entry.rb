@@ -14,15 +14,12 @@ class Entry
   belongs_to :form
   
   before_validation :get_form
-  
-  def get_form
-     @form = Account.find(account_id).forms.find(form_id)
-  end
+
   
   def response_data_validation
-    @form.fields.each do |field|
+    form.fields.each do |field|
       attribute = response_data[field.id.to_s]
-      p attribute
+      
       required_validation(attribute, field.label) if field.required
       uniqueness_validation(attribute, field) if field.uniqueness
     end
@@ -35,7 +32,7 @@ class Entry
   end
   
   def uniqueness_validation(val, field)
-    values_taken = @form.entries.map { |entry| entry.response_data[field.id.to_s] }
+    values_taken = form.entries.map { |entry| entry.response_data[field.id.to_s] }
 
     if values_taken.include?(val)
       errors[field.label.to_sym] << "label must be unique."
@@ -43,7 +40,7 @@ class Entry
   end
   
   def method_missing(attr_id, *args)
-    if @form && @form.has_field_id?(attr_id)
+    if form && form.has_field_id?(attr_id)
       super
     else
       if args.length == 0

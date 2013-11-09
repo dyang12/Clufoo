@@ -7,7 +7,7 @@ class FormsController < ApplicationController
   end
   
   def show
-    @form = current_account.forms.find(params[:id])
+    @form = Form.find(params[:id])
     render :show
   end
   
@@ -17,13 +17,10 @@ class FormsController < ApplicationController
   end
   
   def create
+    params[:form][:account_id] = current_account.id
     @form = Form.new(params[:form])
     
-    if @form.valid?
-      forms = current_account.forms
-      forms.push(@form)
-      current_account.update_attributes(:forms => forms)
-      
+    if @form.save
       redirect_to forms_url(current_account)
     else
       flash.now[:errors] = @form.errors.full_messages
@@ -32,12 +29,12 @@ class FormsController < ApplicationController
   end
   
   def edit
-    @form = current_account.forms.find(params[:id])
+    @form = Form.find(params[:id])
     render :edit
   end
   
   def update
-    @form = current_account.forms.find(params[:id])
+    @form = Form.find(params[:id])
     
     if @form.update_attributes(params[:form])
       render :show
@@ -48,28 +45,21 @@ class FormsController < ApplicationController
   end
   
   def duplicate
-    old_form = current_account.forms.find(params[:id])
+    old_form = Form.find(params[:id])
     fields = old_form.fields.map {|field| Field.dup(field) }
     
     attributes = old_form.attributes
     attributes.delete("_id")
     attributes[:fields] = fields
     
-    @form = Form.new(attributes)
-    
-    forms = current_account.forms
-    forms.push(@form)
-    current_account.update_attributes(:forms => forms)
+    Form.create(attributes)
       
     redirect_to forms_url(current_account)
   end
   
   def destroy
-    @form = current_account.forms.find(params[:id])
-    forms = current_account.forms
-    forms.delete(@form)
-    
-    current_account.update_attributes(:forms => forms)
+    @form = Form.find(params[:id])
+    @form.destroy
     
     redirect_to forms_url(current_account)
   end

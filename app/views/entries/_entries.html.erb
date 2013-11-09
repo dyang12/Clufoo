@@ -17,7 +17,9 @@
 						<tr>
 							<% labels_to_display(@form).each do |field| %>
 								<td class="table-column">
-									<%= shrink(entry.response_data[field.id.to_s]) %>
+									<% if field %>
+										<%= shrink(entry.response_data[field.id.to_s]) %>
+									<% end %>
 								</td>
 							<% end %>
 							<td class="table-column"><%= entry.created_at %></td>

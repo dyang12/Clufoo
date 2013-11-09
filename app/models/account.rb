@@ -4,6 +4,7 @@ class Account
   
   many :forms
   many :users
+  many :reports
   
   def is_creator?(user_id)
     creator_id == user_id

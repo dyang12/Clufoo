@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.outer-body {
+	margin-right: auto;
+	margin-left: auto;
+	width: 945px;
+	min-height: 85%;
+	background-color: #f6f6f6;
+}
+
 .inner-body {
 	width: 90%;
 	padding: 2%;
@@ -20,4 +28,9 @@
 	background-color: #CEE3F6;
 	padding: 5px;
 	margin: 0;
+}
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
 }

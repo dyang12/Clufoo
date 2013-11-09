@@ -1,22 +1,27 @@
-<h3>Sign In</h3>
+<div class="span4 center">
+	<br><br>
+	<div class="inner-body">
+		<h3>Sign In</h3>
 
-<%= render :partial => "layouts/errors" %>
+		<%= render :partial => "layouts/errors" %>
 
-<form action="<%= session_url %>" method="post" accept-charset="utf-8">
-	<input type="hidden" 
-				 name="authenticity_token"
-				 value="<%= form_authenticity_token %>">
+		<form action="<%= session_url %>" method="post" accept-charset="utf-8">
+			<input type="hidden" 
+						 name="authenticity_token"
+						 value="<%= form_authenticity_token %>">
 	
-	<label for="user-username">Username: </label>
-	<input type="text" name="user[username]"
-				 value="<%= @user.username %>" id="user-username">
-	<br>
+			<label for="user-username">Username: </label>
+			<input type="text" name="user[username]"
+						 value="<%= @user.username %>" id="user-username">
+			<br>
 	
-	<label for="user-password">Password: </label>
-	<input type="password" name="user[password]" id="user-password">
-	<br>
+			<label for="user-password">Password: </label>
+			<input type="password" name="user[password]" id="user-password">
+			<br>
 
-	<p><input class="btn" type="submit" value="Sign In"></p>
-</form>
+			<p><input class="btn" type="submit" value="Sign In"></p>
+		</form>
 
-<%= link_to "Signup", new_account_url %>
+		<%= link_to "Signup", new_account_url %>
+	</div>
+</div>

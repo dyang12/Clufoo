@@ -15,5 +15,5 @@ WufooClone::Application.routes.draw do
   post "forms/:id/duplicate", :to => "forms#duplicate", :as => "duplicate_form"
   put "users/:id/toggle", :to=> "users#toggle_admin", :as => "toggle_user"
   get "help", :to => "static_pages#help"
-  root :to => "sessions#new"
+  root :to => "static_pages#root"
 end

@@ -16,5 +16,4 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
-//= require wufoo_clone
 //= require_tree .

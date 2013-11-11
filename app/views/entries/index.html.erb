@@ -1,3 +1,8 @@
-<%= button_to "Create a New Entry", new_form_entry_url(@form), :method => :get, :class => "btn btn-large btn-primary" %>
-
+<div class="row">
+	<h3 class="span4 center-text pad-top text-green">Click an Entry Below</h3>
+	<h3 class="span4 center-text">OR</h3>
+	<div class="span4 center pad-right">
+		<%= button_to "Create a New Entry", new_form_entry_url(@form), :method => :get, :class => "btn btn-large btn-primary" %>
+	</div>
+</div>
 <%= render :partial => 'entries/entries' %>

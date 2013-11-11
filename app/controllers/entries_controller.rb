@@ -26,6 +26,11 @@ class EntriesController < ApplicationController
                        :response_data => params[:entry])
 
     if @entry.save
+      if @form.forward_email
+        msg = UserMailer.notification_email(@form.forward_email, @entry)
+        msg.deliver!
+      end
+      
       redirect_to form_entries_url(@entry.form_id)
     else
       flash.now[:errors] = @entry.errors.full_messages
@@ -34,14 +39,14 @@ class EntriesController < ApplicationController
   end
   
   def edit
-    @form = Form.find(params[:form_id])
     @entry = Entry.find(params[:id])
+    @form = @entry.form
     render :edit
   end
   
   def update
-    @form = Form.find(params[:form_id])
     @entry = Entry.find(params[:id])
+    @form = @entry.form
     
     if @entry.update_attributes(:response_data => params[:entry])
       render :show

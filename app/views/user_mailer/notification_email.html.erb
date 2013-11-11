@@ -1,0 +1,11 @@
+<h3><%= @form.title %></h3>
+<table>
+	<% @form.fields.each do |field| %>
+		<tr>
+			<td><%= field.label %></td>
+			<td>|</td>
+			<td><%= display_attribute(@entry, field) %></td>
+		</tr>
+	<% end %>
+</table>
+<br>

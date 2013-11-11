@@ -1,7 +1,13 @@
 <div class="navbar navbar-fixed-bottom">
 	<div class="navbar-table">
 		<div class="container">
-			<h5 class="table-title">Recent Entries</h5>
+			<h5 class="table-title span2">Recent Entries</h5>
+			<div class="span5 center">
+				<form class="form-search">
+					<input type="text" class="input-medium search-query">
+					<button type="submit" class="btn">Search</button>
+				</form>
+			</div>
 			<div>
 				<table class="table-header">
 					<tr>
@@ -17,7 +23,7 @@
 						<tr>
 							<% labels_to_display(@form).each do |field| %>
 								<td class="table-column">
-									<% if field %>
+									<% if field && entry.response_data[field.id.to_s] %>
 										<%= shrink(entry.response_data[field.id.to_s]) %>
 									<% end %>
 								</td>

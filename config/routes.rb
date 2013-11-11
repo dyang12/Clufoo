@@ -7,10 +7,10 @@ WufooClone::Application.routes.draw do
   
   resources :forms do
     resources :fields, :except => [:index, :show]
-    resources :entries, :only => [:index, :new, :edit]
+    resources :entries, :only => [:index, :new]
   end
   
-  resources :entries, :except => [:new, :edit, :index]
+  resources :entries, :except => [:new, :index]
 
   post "forms/:id/duplicate", :to => "forms#duplicate", :as => "duplicate_form"
   put "users/:id/toggle", :to=> "users#toggle_admin", :as => "toggle_user"

@@ -4,10 +4,11 @@ class Form
   key :account_id, ObjectId, :required => true
   key :title, String, :required => true
   key :description, String
+  key :forward_email, String
   
   timestamps!
   
-  attr_accessible :title, :description, :account_id, :fields
+  attr_accessible :title, :description, :account_id, :forward_email, :fields
   
   many :fields
   many :entries

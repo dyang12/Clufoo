@@ -1,19 +1,33 @@
-<h3>Create Form</h3>
+<div class="inner-body">
+	<h3>Create Form</h3>
 
-<%= render :partial => "layouts/errors" %>
-
-<form action="<%= forms_url %>" method="post" accept-charset="utf-8">
-	<input type="hidden" 
-				 name="authenticity_token"
-				 value="<%= form_authenticity_token %>">
+	<%= render :partial => "layouts/errors" %>
 	
-	<label for="form-title">Title</label>
-	<input type="text" name="form[title]" 
-				 value="<%= @form.title %>" id="form-title">
-	<br>
-	
-	<label for="form-description">Description</label>
-	<textarea name="form[description]" id="form-description"><%= @form.description %></textarea>
-	
-	<p><input class="btn" type="submit" value="Create Form"></p>
-</form>
+	<div class="form-toolbar">
+		<ul id="myTab" class="nav nav-tabs">
+			<li class="active">
+				<a href="#add-field" data-toggle="tab">Add a Field</a>
+			</li>
+			<li>
+				<a href="#edit-field" data-toggle="tab">Field Settings</a>
+			</li>
+			<li>
+				<a href="#edit-form" data-toggle="tab">Form Settings</a>
+			</li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<div id="add-field" class="tab-pane fade active in">
+				
+			</div>
+			<div id="edit-field" class="tab-pane fade">
+				
+			</div>
+			<div id="edit-form" class="tab-pane fade">
+				
+			</div>
+		</div>
+	</div>
+	<div class="new-form">
+		
+	</div>
+</div>

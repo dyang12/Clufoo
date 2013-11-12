@@ -40,8 +40,6 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'ejs'
-gem 'backbone-on-rails'
 gem 'mongo_mapper'
 gem 'bson_ext'
 gem 'rails_12factor', group: :production

@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.serializeJSON
 //= require twitter/bootstrap
 //= require underscore
-//= require backbone
 //= require bootstrap
 //= require_tree .

@@ -16,4 +16,5 @@
 //= require twitter/bootstrap
 //= require underscore
 //= require bootstrap
+//= require_tree ../templates
 //= require_tree .

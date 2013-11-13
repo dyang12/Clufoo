@@ -51,14 +51,43 @@
 				<h3 id="form-title"><%= @form.title %></h3>
 				<p id="form-description"><%= @form.description %></p>
 			</div>
+			
+			<ul id="fields">
+				
+			</ul>
 		</div>
-		<br>
-		<br>
-		<button id="create-form" class="btn btn-primary pull-right" type="submit">Make Form</button>
-		<br>
+		<div id="create-form">
+			<button id="create-form-btn" class="btn btn-primary pull-right" type="submit">Make Form</button>
+			<br>
+		</div>
 	</div>
 </div>
 
 <script>
-
+	$(document).ready(function() {
+		$("#text-field").on("click", function (event) {
+			var textField = JST["text_field"];
+			$("#fields").append(textField);
+		});
+		
+		$("#text-area").on("click", function (event) {
+			var textArea = JST["text_area"];
+			$("#fields").append(textArea);
+		});
+		
+		$("#checkbox").on("click", function (event) {
+			var checkbox = JST["checkbox"];
+			$("#fields").append(checkbox);
+		});
+		
+		$("#dropdown").on("click", function (event) {
+			var dropdown = JST["dropdown"];
+			$("#fields").append(dropdown);
+		});
+		
+		$("#select").on("click", function (event) {
+			var select = JST["select"];
+			$("#fields").append(select);
+		});
+	});
 </script>

@@ -4,13 +4,13 @@
 	<div>
 		<div class="form-toolbar">
 			<ul id="myTab" class="nav nav-tabs">
-				<li class="active">
+				<li class="add-field-tab active">
 					<a href="#add-field" data-toggle="tab">Add a Field</a>
 				</li>
-				<li>
+				<li class="edit-field-tab">
 					<a href="#edit-field" data-toggle="tab">Field Settings</a>
 				</li>
-				<li>
+				<li class="edit-form-tab">
 					<a href="#edit-form" data-toggle="tab">Form Settings</a>
 				</li>
 			</ul>
@@ -18,15 +18,15 @@
 				<div id="add-field" class="tab-pane fade active in">
 					<div class="tab-form">
 						<h4>Standard Fields</h4>
-						<button id="text-field" class="btn btn-list" type="button">Single Line Text</button>
-						<button id="text-area" class="btn btn-list" type="button">Paragraph Text</button>
+						<button id="text-field-btn" class="btn btn-list" type="button">Single Line Text</button>
+						<button id="text-area-btn" class="btn btn-list" type="button">Paragraph Text</button>
 						<br>
 						<br>
-						<button id="checkbox" class="btn btn-list" type="button">Checkbox</button>
-						<button id="dropdown" class="btn btn-list" type="button">Dropdown</button>
+						<button id="checkbox-btn" class="btn btn-list" type="button">Checkbox</button>
+						<button id="dropdown-btn" class="btn btn-list" type="button">Dropdown</button>
 						<br>
 						<br>
-						<button id="select" class="btn btn-list" type="button">Multiple Choice</button>
+						<button id="select-btn" class="btn btn-list" type="button">Multiple Choice</button>
 					</div>
 				</div>
 				<div id="edit-field" class="tab-pane fade">
@@ -67,33 +67,33 @@
 		var numFields = 0;
 		var currClick = null;
 		
-		$("#text-field").on("click", function (event) {
+		$("#text-field-btn").on("click", function (event) {
 			var textField = JST["text_field"];
-			$("#fields").append("<li class=\"field_" + numFields + "\">" + textField() + "</li>");
+			$("#fields").append("<li class=\"field-" + numFields + "\">" + textField() + "</li>");
 			numFields++;
 		});
 		
-		$("#text-area").on("click", function (event) {
+		$("#text-area-btn").on("click", function (event) {
 			var textArea = JST["text_area"];
-			$("#fields").append("<li class=\"field_" + numFields + "\">" + textArea() + "</li>");
+			$("#fields").append("<li class=\"field-" + numFields + "\">" + textArea() + "</li>");
 			numFields++;
 		});
 		
-		$("#checkbox").on("click", function (event) {
+		$("#checkbox-btn").on("click", function (event) {
 			var checkbox = JST["checkbox"];
-			$("#fields").append("<li class=\"field_" + numFields + "\">" + checkbox() + "</li>");
+			$("#fields").append("<li class=\"field-" + numFields + "\">" + checkbox() + "</li>");
 			numFields++;
 		});
 		
-		$("#dropdown").on("click", function (event) {
+		$("#dropdown-btn").on("click", function (event) {
 			var dropdown = JST["dropdown"];
-			$("#fields").append("<li class=\"field_" + numFields + "\">" + dropdown() + "</li>");
+			$("#fields").append("<li class=\"field-" + numFields + "\">" + dropdown() + "</li>");
 			numFields++;
 		});
 		
-		$("#select").on("click", function (event) {
+		$("#select-btn").on("click", function (event) {
 			var multipleChoice = JST["select"];
-			$("#fields").append("<li class=\"field_" + numFields + "\">" + multipleChoice() + "</li>");
+			$("#fields").append("<li class=\"field-" + numFields + "\">" + multipleChoice() + "</li>");
 			numFields++;
 		});
 		
@@ -112,6 +112,39 @@
 			}
 			
 			currClick = $(event.currentTarget)
+			currClick.toggleClass("clicked");
+		});
+		
+		$("#myTab .add-field-tab").on("click", function() {
+			if(currClick) {
+				currClick.toggleClass("clicked");
+				currClick = null
+			}
+		});
+		
+		$("#myTab .edit-form-tab").on("click", function() {
+			if(currClick) {
+				currClick.toggleClass("clicked");
+				currClick = null
+			}
+			
+			currClick = $("#form");
+			currClick.toggleClass("clicked");
+		});
+		
+		$("#myTab .edit-field-tab").on("click", function() {
+			if(currClick) {
+				currClick.toggleClass("clicked");
+				currClick = null
+			}
+			
+			if ($("ul#fields").html() == "") {
+				var textField = JST["text_field"];
+				$("#fields").append("<li class=\"field-" + numFields + "\">" + textField() + "</li>");
+				numFields++;
+			}
+			
+			currClick = $("ul#fields li.field-0");
 			currClick.toggleClass("clicked");
 		});
 	});

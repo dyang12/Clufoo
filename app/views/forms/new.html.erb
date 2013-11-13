@@ -1,0 +1,64 @@
+<div class="inner-body">
+	<%= render :partial => "layouts/errors" %>
+	
+	<div>
+		<div class="form-toolbar">
+			<ul id="myTab" class="nav nav-tabs">
+				<li class="active">
+					<a href="#add-field" data-toggle="tab">Add a Field</a>
+				</li>
+				<li>
+					<a href="#edit-field" data-toggle="tab">Field Settings</a>
+				</li>
+				<li>
+					<a href="#edit-form" data-toggle="tab">Form Settings</a>
+				</li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div id="add-field" class="tab-pane fade active in">
+					<div class="tab-form">
+						<h4>Standard Fields</h4>
+						<button id="text-field" class="btn btn-list" type="button">Single Line Text</button>
+						<button id="text-area" class="btn btn-list" type="button">Paragraph Text</button>
+						<br>
+						<br>
+						<button id="checkbox" class="btn btn-list" type="button">Checkbox</button>
+						<button id="dropdown" class="btn btn-list" type="button">Dropdown</button>
+						<br>
+						<br>
+						<button id="select" class="btn btn-list" type="button">Multiple Choice</button>
+					</div>
+				</div>
+				<div id="edit-field" class="tab-pane fade">
+					<div class="tab-form">
+						
+					</div>
+				</div>
+				<div id="edit-form" class="tab-pane fade">
+					<div class="tab-form">
+						<label for="form-title">Form Title</label>
+						<input type="text" name="form[title]" value="<%= @form.title %>" id="form-title">
+						<br>
+						<label for="form-description">Form Description</label>
+						<textarea id="form-description" name="form[description]" rows="4"><%= @form.description %></textarea>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+		<div class="new-form">
+			<div id="form">
+				<h3 id="form-title"><%= @form.title %></h3>
+				<p id="form-description"><%= @form.description %></p>
+			</div>
+		</div>
+		<br>
+		<br>
+		<button id="create-form" class="btn btn-primary pull-right" type="submit">Make Form</button>
+		<br>
+	</div>
+</div>
+
+<script>
+
+</script>

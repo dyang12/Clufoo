@@ -18,6 +18,7 @@
 	border-radius: 10px;
 	margin: 3%;
 	background-color: #CEE3F6;
+	padding-bottom: 1%;
 }
 
 .el-show {
@@ -46,9 +47,15 @@
 }
 .new-form {
 	border: 2px solid gray;
-	width: 55%;
+	width: 56%;
 	min-height: 500px;
 	background-color: #ffffff;
 	display: inline-block;
 	margin-left: -6px;
+}
+#form {
+	padding-left: 10px;
+}
+.tab-form {
+	padding-left: 10px;
 }

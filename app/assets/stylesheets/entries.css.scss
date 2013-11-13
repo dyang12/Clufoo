@@ -20,16 +20,17 @@ border: 1px solid gray;
 }
 .table-header {
 	color: white;
-	width: 100%;
+	min-width: 98%;
+	width: auto;
 	background-color: #585858;
 }
 .table-column {
 	width: 20%;
-	height: 22px;
 }
 .entry-table {
 	background-color: white;
-	width: 100%;
+	min-width: 98%;
+	width: auto
 }
 .bold {
 	font-weight: bold;

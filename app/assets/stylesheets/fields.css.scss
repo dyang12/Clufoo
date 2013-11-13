@@ -6,4 +6,13 @@
 }
 #fields {
 	list-style-type: none;
+	padding-right: 20px;
+}
+#fields li {
+	padding-left: 10px;
+	padding-bottom: 10px;
+}
+.clicked {
+	background-color: #87ea00;
+	border: 1px dotted;
 }

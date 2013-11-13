@@ -40,7 +40,8 @@
 	margin-left: 5px;
 	border: 2px solid gray;
 	width: 42%;
-	min-height: 500px;
+	height: 500px;
+	overflow: auto;
 	background-color: #ffffff;
 	display: inline-block;
 	float: left;
@@ -48,7 +49,8 @@
 .new-form {
 	border: 2px solid gray;
 	width: 56%;
-	min-height: 500px;
+	height: 500px;
+	overflow: auto;
 	background-color: #ffffff;
 	display: inline-block;
 	margin-left: -6px;

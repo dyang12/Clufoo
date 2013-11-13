@@ -52,9 +52,8 @@
 				<p id="form-description"><%= @form.description %></p>
 			</div>
 			
-			<ul id="fields">
-				
-			</ul>
+			<ul id="fields"></ul>
+			
 		</div>
 		<div id="create-form">
 			<button id="create-form-btn" class="btn btn-primary pull-right" type="submit">Make Form</button>
@@ -65,29 +64,55 @@
 
 <script>
 	$(document).ready(function() {
+		var numFields = 0;
+		var currClick = null;
+		
 		$("#text-field").on("click", function (event) {
 			var textField = JST["text_field"];
-			$("#fields").append(textField);
+			$("#fields").append("<li class=\"field_" + numFields + "\">" + textField() + "</li>");
+			numFields++;
 		});
 		
 		$("#text-area").on("click", function (event) {
 			var textArea = JST["text_area"];
-			$("#fields").append(textArea);
+			$("#fields").append("<li class=\"field_" + numFields + "\">" + textArea() + "</li>");
+			numFields++;
 		});
 		
 		$("#checkbox").on("click", function (event) {
 			var checkbox = JST["checkbox"];
-			$("#fields").append(checkbox);
+			$("#fields").append("<li class=\"field_" + numFields + "\">" + checkbox() + "</li>");
+			numFields++;
 		});
 		
 		$("#dropdown").on("click", function (event) {
 			var dropdown = JST["dropdown"];
-			$("#fields").append(dropdown);
+			$("#fields").append("<li class=\"field_" + numFields + "\">" + dropdown() + "</li>");
+			numFields++;
 		});
 		
 		$("#select").on("click", function (event) {
-			var select = JST["select"];
-			$("#fields").append(select);
+			var multipleChoice = JST["select"];
+			$("#fields").append("<li class=\"field_" + numFields + "\">" + multipleChoice() + "</li>");
+			numFields++;
+		});
+		
+		$("ul#fields").on("click", "li", function (event) {
+			if(currClick) {
+				currClick.toggleClass("clicked");
+			}
+			
+			currClick = $(event.currentTarget)
+			currClick.toggleClass("clicked");
+		});
+		
+		$("#form").on("click", function (event) {
+			if(currClick) {
+				currClick.toggleClass("clicked");
+			}
+			
+			currClick = $(event.currentTarget)
+			currClick.toggleClass("clicked");
 		});
 	});
 </script>

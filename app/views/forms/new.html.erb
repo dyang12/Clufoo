@@ -35,14 +35,7 @@
 					</div>
 				</div>
 				<div id="edit-form" class="tab-pane fade">
-					<div class="tab-form">
-						<label for="form-title">Form Title</label>
-						<input type="text" name="form[title]" value="<%= @form.title %>" id="form-title">
-						<br>
-						<label for="form-description">Form Description</label>
-						<textarea id="form-description" name="form[description]" rows="4"><%= @form.description %></textarea>
-					</div>
-				
+					
 				</div>
 			</div>
 		</div>
@@ -52,7 +45,7 @@
 				<p id="form-description"><%= @form.description %></p>
 			</div>
 			
-			<ul id="fields"></ul>
+				<ul id="fields"></ul>
 			
 		</div>
 		<div id="create-form">
@@ -104,6 +97,8 @@
 			
 			currClick = $(event.currentTarget)
 			currClick.toggleClass("clicked");
+			
+			// need to add changing tab to proper field settings
 		});
 		
 		$("#form").on("click", function (event) {
@@ -113,16 +108,18 @@
 			
 			currClick = $(event.currentTarget)
 			currClick.toggleClass("clicked");
+
+			// need to add changing tab to form settings
 		});
 		
-		$("#myTab .add-field-tab").on("click", function() {
+		$("#myTab .add-field-tab").on("click", function(event) {
 			if(currClick) {
 				currClick.toggleClass("clicked");
 				currClick = null
 			}
 		});
 		
-		$("#myTab .edit-form-tab").on("click", function() {
+		$("#myTab .edit-form-tab").on("click", function(event) {
 			if(currClick) {
 				currClick.toggleClass("clicked");
 				currClick = null
@@ -130,9 +127,17 @@
 			
 			currClick = $("#form");
 			currClick.toggleClass("clicked");
+			
+			var template = JST["edit_form"];
+			
+			var editForm = template({
+				form: form;
+			});
+			
+			$("#edit-form").html(editForm);
 		});
 		
-		$("#myTab .edit-field-tab").on("click", function() {
+		$("#myTab .edit-field-tab").on("click", function(event) {
 			if(currClick) {
 				currClick.toggleClass("clicked");
 				currClick = null
@@ -146,6 +151,19 @@
 			
 			currClick = $("ul#fields li.field-0");
 			currClick.toggleClass("clicked");
+		});
+		
+		$("#create-form-btn").on("click", function(event) {
+			var form = {};
+			var fields = {};
+			
+			formData = $("#form").html();
+			
+			for(var i = 0; i < numFields; i++) {
+				console.log(fieldsData = $(".field-" + i).html());
+			}
+			
+			debugger
 		});
 	});
 </script>

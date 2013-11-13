@@ -2,7 +2,7 @@
 	<h3 class="span4 center-text pad-top text-green">Click an Entry Below</h3>
 	<h3 class="span4 center-text">OR</h3>
 	<div class="span4 center-text">
-		<button id="new-entry" class="btn btn-large btn-primary" type="button">Create a New Entry</button>
+		<button id="new-entry" class="btn btn-large btn-primary" type="button" data-id="<%= @form.id %>">Create a New Entry</button>
 	</div>
 </div>
 <%= render :partial => 'entries/entries' %>
@@ -12,8 +12,20 @@
 	  $('#new-entry').on('click', function(event) {
 	  event.preventDefault();
 	
-		$('#outer-body')
-	  });
+		var formId = $(event.currentTarget).attr("data-id");
 	
+		$.ajax({
+				url: "/forms/" + formId + "/entries/new",
+				type: "get",
+				success: function(data) {
+					var form = data.substring(data.indexOf("<div class=\"entry-form\">"), data.lastIndexOf("</form>")) +"</form></div>";
+					$(".row").html(form);
+				}
+			});
+	  });
+		
+		$('.entry-table').on('click', 'tr', function(event) {
+			
+		});
 	});
 </script>

@@ -1,0 +1,47 @@
+<div>
+	<div class="inline-block">
+		<button class="btn btn-primary btn-square new" type="button">New</button>
+		<button class="btn btn-info btn-square edit" type="button">Edit</button>
+		<button class="btn btn-warning btn-square email" type="button">Email</button>
+		<button class="btn btn-danger btn-square delete" type="button">Delete</button>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$("button.new").on("click", function() {
+			var formId = $("table.table-header").attr("data-id");
+	
+			$.ajax({
+					url: "/forms/" + formId + "/entries/new",
+					type: "get",
+					success: function(data) {
+						var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</form>")) +"</form></div>";
+						form = form.replace("entry-form", "entry-form-short");
+						$(".inline-block").html(form);
+					}
+				});
+		});
+		
+		$("button.edit").on("click", function() {
+			var id = $(".entry-form-short").attr("data-id");
+			$.ajax({
+				url: "/entries/" + id + "/edit",
+				type:"get",
+				success: function(data) {
+					var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</form>")) +"</form></div>";
+					form = form.replace("entry-form", "entry-form-short");
+					$("div.span7").html(form);
+				}
+			});
+		});
+		
+		$("button.email").on("click", function() {
+			
+		});
+		
+		$("button.delete").on("click", function() {
+			var id = $(".entry-form-short").attr("data-id");
+		});
+	});
+</script>

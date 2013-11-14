@@ -48,22 +48,17 @@ border: 1px solid gray;
 	height: 600px;
 	overflow: auto;
 	background-color: white;
-	border-left: 10px;
-	border-right: 10px #EFFBFB;
 	padding: 2%;
+	margin: 0;
 	margin-left: 16%;
-	margin-right:16%;
 }
 .entry-form-short {
-	width: 65%;
+	width: 80%;
 	height: 400px;
 	overflow: auto;
 	background-color: white;
-	border-left: 10px;
-	border-right: 10px #EFFBFB;
 	padding: 2%;
-	margin-left: 16%;
-	margin-right:16%;
+	margin-left: 7%;
 }
 .pad-top {
 	padding-top: 15%;
@@ -80,4 +75,16 @@ border: 1px solid gray;
 .table-height {
 	max-height: 125px;
 	overflow: auto;
+}
+.btn-square {
+	height: 70px;
+	width: 70px;
+}
+.field-display {
+	width: 20%;
+	max-height: 10%;
+}
+.data-display {
+	width: 40%;
+	max-height: 10%;
 }

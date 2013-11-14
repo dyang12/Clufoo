@@ -1,14 +1,11 @@
-<%= button_to "Back", form_entries_url(@form.id), :method => :get %>
-
-<h3><%= @form.title %></h3>
-<table>
-	<% @form.fields.each do |field| %>
-		<tr>
-			<td><%= field.label %></td>
-			<td><%= display_attribute(@entry, field) %></td>
-		</tr>
-	<% end %>
-</table>
-<br>
-<%= button_to "Edit", edit_form_entry_url(@form.id, @entry.id), :method => :get %>
-<%= button_to "Delete", entry_url(@entry.id), :method => :delete %>
+<div class="entry-form" data-id="<%= @entry.id %>">
+	<h3><%= @form.title %></h3>
+	<table class="table table-striped">
+		<% @form.fields.each do |field| %>
+			<tr>
+				<td class="field-display"><%= field.label %></td>
+				<td class="data-display"><%= display_attribute(@entry, field) %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>

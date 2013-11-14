@@ -1,8 +1,8 @@
-<div class="row">
+<div class="inline-block">
 	<h3 class="span4 center-text pad-top text-green">Click an Entry Below</h3>
 	<h3 class="span4 center-text">OR</h3>
 	<div class="span4 center-text">
-		<button id="new-entry" class="btn btn-large btn-primary" type="button" data-id="<%= @form.id %>">Create a New Entry</button>
+		<button id="new-entry" class="btn btn-large btn-primary" type="button">Create a New Entry</button>
 	</div>
 </div>
 <%= render :partial => 'entries/entries' %>
@@ -12,29 +12,31 @@
 	  $('#new-entry').on('click', function(event) {
 	  event.preventDefault();
 	
-		var formId = $(event.currentTarget).attr("data-id");
+		var formId = $("table.table-header").attr("data-id");
 	
 		$.ajax({
 				url: "/forms/" + formId + "/entries/new",
 				type: "get",
 				success: function(data) {
-					var form = data.substring(data.indexOf("<div class=\"entry-form\">"), data.lastIndexOf("</form>")) +"</form></div>";
+					var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</form>")) +"</form></div>";
 					form = form.replace("entry-form", "entry-form-short");
-					$(".row").html(form);
+					$(".inline-block").html(form);
 				}
 			});
 	  });
 		
 		$('.entry-table').on('click', 'tr', function(event) {
 			var id = $(event.currentTarget).attr("data-id");
+			var sidebar = JST['entry_sidebar'];
 			
 			$.ajax({
-				url: "/entries/" + id + "/edit",
+				url: "/entries/" + id,
 				type:"get",
 				success: function(data) {
-					var form = data.substring(data.indexOf("<div class=\"entry-form\">"), data.lastIndexOf("</form>")) +"</form></div>";
+					var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</div>"));
 					form = form.replace("entry-form", "entry-form-short");
-					$(".row").html(form);
+					
+					$(".inline-block").html("<div class=\"span7\">" + form + "</div><div class=\"span4\">" + sidebar() + "</div>");
 				}
 			});
 		});

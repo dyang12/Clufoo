@@ -29,7 +29,7 @@
 				<br>
 	
 				<% field.choices.each do |opt| %>
-					<%= label_tag(radio_tag(field.id, opt), opt) %>
+					<%= label_tag(radio_tag(field.id, opt), opt, :class => "label") %>
 					<%= f.send field.type, field.id, opt %>
 					<br>
 				<% end %>

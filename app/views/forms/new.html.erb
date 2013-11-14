@@ -98,7 +98,11 @@
 			currClick = $(event.currentTarget)
 			currClick.toggleClass("clicked");
 			
-			// need to add changing tab to proper field settings
+			$("li.active").toggleClass("active");
+			$("li.edit-field-tab").toggleClass("active");
+			
+			$("div.active").toggleClass("active in");
+			$("div#edit-field").toggleClass("active in");
 		});
 		
 		$("#form").on("click", function (event) {
@@ -108,8 +112,12 @@
 			
 			currClick = $(event.currentTarget)
 			currClick.toggleClass("clicked");
-
-			// need to add changing tab to form settings
+			
+			$("li.active").toggleClass("active");
+			$("li.edit-form-tab").toggleClass("active");
+			
+			$("div.active").toggleClass("active in");
+			$("div#edit-form").toggleClass("active in");
 		});
 		
 		$("#myTab .add-field-tab").on("click", function(event) {

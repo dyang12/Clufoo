@@ -14,31 +14,33 @@
 						<td class="table-column">Entry ID</td>
 						
 						<% labels_to_display(@form).each do |field| %>
-							<td class="table-column"><em><%= field.label %></em></td>
+							<td class="table-column"><em><%= shrink(field.label) %></em></td>
 						<% end %>
 						
 						<td class="table-column"><em>Created At</em></td>
 						<td class="table-column"><em>Updated At</em></td>
 					</tr>
-				</tabel>
-				<table class="entry-table table-hover">
-					<% @form.entries.each do |entry| %>
-						<tr data-id="<%= entry.id %>">
-							<td class="table-column"><%= entry.display_id %></td>
-							
-							<% labels_to_display(@form).each do |field| %>
-								<td class="table-column">
-									<% if field && entry.response_data[field.id.to_s] %>
-										<%= shrink(entry.response_data[field.id.to_s]) %>
-									<% end %>
-								</td>
-							<% end %>
-							
-							<td class="table-column"><%= entry.created_at %></td>
-							<td class="table-column"><%= entry.updated_at %></td>
-						</tr>
-					<% end %>
 				</table>
+				<div class="table-height">
+					<table class="entry-table table-hover">
+						<% @form.entries.each do |entry| %>
+							<tr data-id="<%= entry.id %>">
+								<td class="table-column"><%= entry.display_id %></td>
+							
+								<% labels_to_display(@form).each do |field| %>
+									<td class="table-column">
+										<% if field && entry.response_data[field.id.to_s] %>
+											<%= shrink(entry.response_data[field.id.to_s]) %>
+										<% end %>
+									</td>
+								<% end %>
+							
+								<td class="table-column"><%= entry.created_at %></td>
+								<td class="table-column"><%= entry.updated_at %></td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -10,8 +10,6 @@ class Form
   
   attr_accessible :title, :description, :account_id, :forward_email, :fields
   
-  before_save :set_num_entries
-  
   many :fields
   many :entries
   belongs_to :account

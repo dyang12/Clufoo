@@ -2,11 +2,12 @@ class Entry
   include MongoMapper::Document
   key :account_id, ObjectId, :required => true
   key :form_id, ObjectId, :required => true
+  key :display_id, Integer, :required => true
   key :response_data, Hash
   
   timestamps!
   
-  attr_accessible :account_id, :form_id, :response_data
+  attr_accessible :account_id, :form_id, :display_id, :response_data
   
   validate :response_data_validation
   

@@ -32,10 +32,10 @@
           <div class="container nav-collapse">
             <ul class="nav">
 							<% if current_user %>
-	              <li><a class="navbar-btn"><%= button_to "Forms", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Reports", forms_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Users", user_url(current_user), :method => :get, :class => "btn btn-warning" %></a></li>
-	              <li><a class="navbar-btn"><%= button_to "Account", account_url(current_user.account_id), :method => :get, :class => "btn btn-warning" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Forms", forms_url(current_user), :method => :get, :class => "btn btn-inverse" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Reports", forms_url(current_user), :method => :get, :class => "btn btn-inverse" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Users", user_url(current_user), :method => :get, :class => "btn btn-inverse" %></a></li>
+	              <li><a class="navbar-btn"><%= button_to "Account", account_url(current_user.account_id), :method => :get, :class => "btn btn-inverse" %></a></li>
 							<% end %>
             </ul>
 						<ul class="nav pull-right">

@@ -1,7 +1,7 @@
 <div class="inner-body">
 	<%= render :partial => "layouts/errors" %>
 	
-	<div>
+	<div class= "new-form-body">
 		<div class="form-toolbar">
 			<ul id="myTab" class="nav nav-tabs">
 				<li class="add-field-tab active">
@@ -35,7 +35,18 @@
 					</div>
 				</div>
 				<div id="edit-form" class="tab-pane fade">
-						
+					<div class="tab-form">
+						<form id="save-form-attributes">
+							<label for="form-title-attr">Form Title: </label>
+							<input type="text" name="form[title]" value="" id="form-title-attr">
+							<br>
+							<label for="form-description-attr">Form Description: </label>
+							<textarea id="form-description-attr" name="form[description]" rows="4"></textarea>
+							<br>
+	
+							<input type="submit" class="btn btn-primary" value="Save">
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -61,8 +72,16 @@
 		var currClick = null;
 		
 		$("#text-field-btn").on("click", function (event) {
-			var textField = JST["text_field"];
-			$("#fields").append("<li class=\"field-" + numFields + "\">" + textField() + "</li>");
+			var textField = JST["text_field"]();
+			
+			$("#fields").append("<li class=\"field-" + numFields + "\">" + textField + "</li>");
+			
+			var template = JST["edit_field"];
+			
+			var fieldForm = template ({
+				id: numFields
+			});
+			
 			numFields++;
 		});
 		
@@ -106,6 +125,9 @@
 		});
 		
 		$("#form").on("click", function (event) {
+			var title = $('#form-title').text();
+			var description = $('#form-description').text();
+			
 			if(currClick) {
 				currClick.toggleClass("clicked");
 			}
@@ -118,6 +140,9 @@
 			
 			$("div.active").toggleClass("active in");
 			$("div#edit-form").toggleClass("active in");
+			
+			$('#form-title-attr')[0].value = title;
+			$('#form-description-attr').text(description);
 		});
 		
 		$("#myTab .add-field-tab").on("click", function(event) {
@@ -130,10 +155,6 @@
 		$("#myTab .edit-form-tab").on("click", function(event) {
 			var title = $('#form-title').text();
 			var description = $('#form-description').text();
-			var form = {
-				title: title,
-				description: description
-			};
 			
 			if(currClick) {
 				currClick.toggleClass("clicked");
@@ -143,13 +164,8 @@
 			currClick = $("#form");
 			currClick.toggleClass("clicked");
 			
-			var template = JST["edit_form"];
-			var editForm = template({
-				form: form
-			})
-			
-			
-			$("#edit-form").html(editForm);
+			$('#form-title-attr')[0].value = title;
+			$('#form-description-attr').text(description);
 		});
 		
 		$("#myTab .edit-field-tab").on("click", function(event) {
@@ -168,15 +184,17 @@
 			currClick.toggleClass("clicked");
 		});
 		
+		$("#save-form-attributes").on("submit", function(event) {
+			event.preventDefault();
+		
+			var data = $(event.target).serializeJSON();
+		
+			$('#form-title').text(data.form.title);
+			$('#form-description').text(data.form.description);
+		});
+		
 		$("#create-form-btn").on("click", function(event) {
-			var form = {};
-			var fields = {};
-			
-			formData = $("#form").html();
-			
-			for(var i = 0; i < numFields; i++) {
-				console.log(fieldsData = $(".field-" + i).html());
-			}
+			var form = $("#save-form-attributes").serializeJSON().form
 			
 			debugger
 		});

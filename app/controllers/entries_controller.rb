@@ -51,7 +51,7 @@ class EntriesController < ApplicationController
     @form = @entry.form
     
     if @entry.update_attributes(:response_data => params[:entry])
-      render :show
+      redirect_to form_entries_url(@entry.form_id)
     else
       flash.now[:errors] = @entry.errors.full_messages
       render :edit

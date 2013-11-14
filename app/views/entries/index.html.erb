@@ -20,18 +20,23 @@
 				success: function(data) {
 					var form = data.substring(data.indexOf("<div class=\"entry-form\">"), data.lastIndexOf("</form>")) +"</form></div>";
 					form = form.replace("entry-form", "entry-form-short");
-					debugger
 					$(".row").html(form);
 				}
 			});
 	  });
 		
 		$('.entry-table').on('click', 'tr', function(event) {
-			entry = {};
-			$event = $(event.currentTarget)
+			var id = $(event.currentTarget).attr("data-id");
 			
-			var display_id = $event.context.cells[0].innerText;
-
+			$.ajax({
+				url: "/entries/" + id + "/edit",
+				type:"get",
+				success: function(data) {
+					var form = data.substring(data.indexOf("<div class=\"entry-form\">"), data.lastIndexOf("</form>")) +"</form></div>";
+					form = form.replace("entry-form", "entry-form-short");
+					$(".row").html(form);
+				}
+			});
 		});
 	});
 </script>

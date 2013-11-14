@@ -32,7 +32,9 @@ class Entry
   end
   
   def uniqueness_validation(val, field)
-    values_taken = form.entries.map { |entry| entry.response_data[field.id.to_s] }
+    values_taken = form.entries.map do |entry|
+      entry.response_data[field.id.to_s] if id != entry.id
+    end
 
     if values_taken.include?(val)
       errors[field.label.to_sym] << "label must be unique."

@@ -23,7 +23,7 @@
 				</tabel>
 				<table class="entry-table table-hover">
 					<% @form.entries.each do |entry| %>
-						<tr>
+						<tr data-id="<%= entry.id %>">
 							<td class="table-column"><%= entry.display_id %></td>
 							
 							<% labels_to_display(@form).each do |field| %>

@@ -1,51 +1,53 @@
-<h2><%= @form.title%></h2>
-<%= @form.description %>
-<br>
-<br>
-<%= form_for @entry, :url => {:action => "update"} do |f| %>
-	<input type="hidden" 
-				 name="authenticity_token"
-				 value="<%= form_authenticity_token %>">
+<div class="entry-form">
+	<h2><%= @form.title%></h2>
+	<%= @form.description %>
+	<br>
+	<br>
+	<%= form_for @entry, :url => {:action => "update"} do |f| %>
+		<input type="hidden" 
+					 name="authenticity_token"
+					 value="<%= form_authenticity_token %>">
 
-	<input type="hidden" name="_method" value="put">
-	<input type="hidden" name="form_id" value="<%= @form.id %>">
+		<input type="hidden" name="_method" value="put">
+		<input type="hidden" name="form_id" value="<%= @form.id %>">
 
-	<%= render :partial => "layouts/errors" %>
+		<%= render :partial => "layouts/errors" %>
 
-	<% @form.fields.each do |field| %>
-		<% if field.type == "check_box" %>
-			<%= field.label %>
-			<br>
-			
-			<% field.choices.each do |opt| %>
-				<%= label_tag(checkbox_tag(field.id, opt), opt) %>
-				<%= f.send field.type, field.id, { :id => checkbox_id(field.id, opt), :name => checkbox_name(field.id) }, opt, nil %>
-			<br>
-			<% end%>
-			
-		<% elsif field.type == "radio_button" %>
-			<%= field.label %>
-			<br>
-	
-			<% field.choices.each do |opt| %>
-				<%= label_tag(radio_tag(field.id, opt), opt) %>
-				<%= f.send field.type, field.id, opt %>
+		<% @form.fields.each do |field| %>
+			<% if field.type == "check_box" %>
+				<%= field.label %>
 				<br>
-			<% end %>
 			
-		<% elsif field.type == "select" %>
-			<%= label_tag(create_tag(field.id), field.label) %>
-			<%= collection_select(:entry, field.id, get_selections(field), :first, :last) %>
-			<br>
+				<% field.choices.each do |opt| %>
+					<%= label_tag(checkbox_tag(field.id, opt), opt) %>
+					<%= f.send field.type, field.id, { :id => checkbox_id(field.id, opt), :name => checkbox_name(field.id) }, opt, nil %>
+				<br>
+				<% end%>
 			
-		<% else %>
-			<%= label_tag(create_tag(field.id), field.label) %>
-	 		<%= f.send field.type, field.id %>
-			<br>
-			
-		<% end %>
-		<br>
-	<% end%>
+			<% elsif field.type == "radio_button" %>
+				<%= field.label %>
+				<br>
 	
-	<%= f.submit "Update" %>
-<% end %>
+				<% field.choices.each do |opt| %>
+					<%= label_tag(radio_tag(field.id, opt), opt) %>
+					<%= f.send field.type, field.id, opt %>
+					<br>
+				<% end %>
+			
+			<% elsif field.type == "select" %>
+				<%= label_tag(create_tag(field.id), field.label) %>
+				<%= collection_select(:entry, field.id, get_selections(field), :first, :last) %>
+				<br>
+			
+			<% else %>
+				<%= label_tag(create_tag(field.id), field.label) %>
+		 		<%= f.send field.type, field.id %>
+				<br>
+			
+			<% end %>
+			<br>
+		<% end%>
+	
+		<%= f.submit "Update", :class => "btn btn-primary" %>
+	<% end %>
+</div>

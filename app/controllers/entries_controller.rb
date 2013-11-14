@@ -21,6 +21,8 @@ class EntriesController < ApplicationController
   
   def create
     @form = Form.find(params[:form_id])
+    params[:entry][:display_id] = @form.entries.count+1
+    
     @entry = Entry.new(:account_id => current_account.id,
                        :form_id => params[:form_id],
                        :response_data => params[:entry])

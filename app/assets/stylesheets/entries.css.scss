@@ -45,7 +45,18 @@ border: 1px solid gray;
 }
 .entry-form {
 	width: 65%;
-	height: 550px;
+	height: 600px;
+	overflow: auto;
+	background-color: white;
+	border-left: 10px;
+	border-right: 10px #EFFBFB;
+	padding: 2%;
+	margin-left: 16%;
+	margin-right:16%;
+}
+.entry-form-short {
+	width: 65%;
+	height: 400px;
 	overflow: auto;
 	background-color: white;
 	border-left: 10px;

@@ -12,7 +12,6 @@ class FormsController < ApplicationController
   end
   
   def new
-    @form = Form.new(:title => "Untitled Form", :description => "Create a new form!")
     render :new
   end
   

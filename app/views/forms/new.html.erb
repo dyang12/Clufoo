@@ -31,18 +31,18 @@
 				</div>
 				<div id="edit-field" class="tab-pane fade">
 					<div class="tab-form">
-						
+						<!-- append field forms onto tab-form -->
 					</div>
 				</div>
 				<div id="edit-form" class="tab-pane fade">
-					
+						
 				</div>
 			</div>
 		</div>
 		<div class="new-form">
 			<div id="form">
-				<h3 id="form-title"><%= @form.title %></h3>
-				<p id="form-description"><%= @form.description %></p>
+				<h3 id="form-title">Untitled Form</h3>
+				<p id="form-description">Create a new form!</p>
 			</div>
 			
 				<ul id="fields"></ul>
@@ -128,6 +128,13 @@
 		});
 		
 		$("#myTab .edit-form-tab").on("click", function(event) {
+			var title = $('#form-title').text();
+			var description = $('#form-description').text();
+			var form = {
+				title: title,
+				description: description
+			};
+			
 			if(currClick) {
 				currClick.toggleClass("clicked");
 				currClick = null
@@ -137,6 +144,10 @@
 			currClick.toggleClass("clicked");
 			
 			var template = JST["edit_form"];
+			var editForm = template({
+				form: form
+			})
+			
 			
 			$("#edit-form").html(editForm);
 		});

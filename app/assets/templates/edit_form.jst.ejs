@@ -1,9 +1,23 @@
 <div class="tab-form">
-	<label for="form-title">Form Title</label>
-	<input type="text" name="form[title]" value="<%= form.title %>" id="form-title">
-	<br>
-	<label for="form-description">Form Description</label>
-	<textarea id="form-description" name="form[description]" rows="4"><%= form.description %></textarea>
-	<br>
-	<button class="btn btn-primary" type="button">Save</button>
+	<form id="save-form-attributes">
+		<label for="form-title-attr">Form Title</label>
+		<input type="text" name="form[title]" value="<%= form.title %>" id="form-title-attr">
+		<br>
+		<label for="form-description-attr">Form Description</label>
+		<textarea id="form-description-attr" name="form[description]" rows="4"><%= form.description %></textarea>
+		<br>
+	
+		<input type="submit" class="btn btn-primary" value="Save">
+	</form>
 </div>
+
+<script>
+	$("#save-form-attributes").on("submit", function(event) {
+		event.preventDefault();
+		
+		var data = $(event.target).serializeJSON();
+		
+		$('#form-title').text(data.form.title);
+		$('#form-description').text(data.form.description);
+	});
+</script>

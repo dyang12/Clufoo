@@ -26,7 +26,7 @@
 						<button id="dropdown-btn" class="btn btn-list" type="button">Dropdown</button>
 						<br>
 						<br>
-						<button id="select-btn" class="btn btn-list" type="button">Multiple Choice</button>
+						<button id="radio-btn" class="btn btn-list" type="button">Multiple Choice</button>
 					</div>
 				</div>
 				<div id="edit-field" class="tab-pane fade">
@@ -122,15 +122,15 @@
 			var template = JST["edit_field"];
 			var fieldForm = template ({
 				id: numFields,
-				type: "radio_button"
+				type: "select"
 			});
 			
 			$("#edit-field .tab-form").append(fieldForm);
 			numFields++;
 		});
 		
-		$("#select-btn").on("click", function (event) {
-			var multipleChoice = JST["select"];
+		$("#radio-btn").on("click", function (event) {
+			var multipleChoice = JST["radio_button"];
 			$("#fields").append("<li class=\"field-" + numFields + "\">" + multipleChoice() + "</li>");
 			
 			var template = JST["edit_field"];

@@ -214,8 +214,11 @@
 				currClick.toggleClass("clicked");
 				currClick = null
 			}
-			if(currField) {
-				$("#field-" + currField).toggleClass("hidden-field-form displayed-field-form")
+			
+			if(currField != null) {
+				if ($("#field-" + currField)[0].className == "displayed-field-form") {
+					$("#field-" + currField).toggleClass("hidden-field-form displayed-field-form")
+				}
 			}
 			
 			if ($("ul#fields").html() == "") {

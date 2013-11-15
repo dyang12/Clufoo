@@ -15,7 +15,7 @@ class Form
   belongs_to :account
   
   def has_field_id?(field_id)
-    self.fields.each  { |field| return true if field.id == field_id }
+    self.fields.each  { |field| return true if field.id.to_s == field_id }
     
     false
   end

@@ -1,14 +1,25 @@
 <form id="field-<%= id %>" class="hidden-field-form">
+	<input type="hidden" name="field_<%= id %>[type]" value="<%= type %>">
+	
 	<label for="label-<%= id %>">Label: </label>
 	<input type="text" name="field_<%= id %>[label]" value="Untitled" id="label-<%= id %>">
-	<input type="hidden" name="field_<%= id %>[type]" value="<%= type %>">
 	<br>
+	
 	<label class="label" for="field-required">Required</label>
-	<input type="checkbox" name="field[required]" value="t" id="field-required">
+	<input type="checkbox" name="field_<%= id %>[required]" value="t" id="field-required">
 	<br>
+	
 	<label class="label" for="field-unique">No Duplicates</label>
-	<input type="checkbox" name="field[uniqueness]" value="t" id="field-unique">
+	<input type="checkbox" name="field_<%= id %>[uniqueness]" value="t" id="field-unique">
 	<br>
+	
+	<% if(type != "text_area" && type != "text_field") { %>
+		<input type="text" name="field_<%= id %>[choices][]" value="First Choice">
+		<input type="text" name="field_<%= id %>[choices][]" value="Second Choice">
+		<input type="text" name="field_<%= id %>[choices][]" value="Third Choice">
+	<% } %>
+	<br>
+	
 	<input type="submit" class= "btn btn-primary" value="Save">
 </form>
 
@@ -18,7 +29,21 @@
 			event.preventDefault();
 			
 			var data = $(event.target).serializeJSON();
-			$("li.field-<%= id %> label").text(data.field_<%= id %>.label);
+			field = data.field_<%= id %>;
+			$("li.field-<%= id %> label.bold").text(field.label);
+			
+			if (field.type == "select") {
+				for (var i = 1; i <= field.choices.length; i++) {
+					
+					$("li.field-<%= id %> #select #choice-" + i).text(field.choices[i-1]);
+				}
+			}
+			else if (field.type == "radio_button" || field.type == "check_box") {
+				for (var i = 1; i <= field.choices.length; i++) {
+					$("li.field-<%= id %> .choices .choice-" + i + " label").text(field.choices[i-1]);
+				}
+				
+			}
 		});
 	});
 </script>

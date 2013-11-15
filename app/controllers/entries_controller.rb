@@ -21,7 +21,11 @@ class EntriesController < ApplicationController
   
   def create
     @form = Form.find(params[:form_id])
-    display_id = @form.entries.last.display_id+1
+    if @form.entries.length > 0
+      display_id = @form.entries.last.display_id+1
+    else
+      display_id = 1
+    end
     
     @entry = Entry.new(:account_id => current_account.id,
                        :display_id => display_id,

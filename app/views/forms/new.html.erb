@@ -70,6 +70,7 @@
 	$(document).ready(function() {
 		var numFields = 0;
 		var currClick = null;
+		var currField = null;
 		
 		$("#text-field-btn").on("click", function (event) {
 			var textField = JST["text_field"]();
@@ -77,35 +78,68 @@
 			$("#fields").append("<li class=\"field-" + numFields + "\">" + textField + "</li>");
 			
 			var template = JST["edit_field"];
-			
 			var fieldForm = template ({
-				id: numFields
+				id: numFields,
+				type: "text-field"
 			});
 			
+			$("#edit-field .tab-form").append(fieldForm);
 			numFields++;
 		});
 		
 		$("#text-area-btn").on("click", function (event) {
 			var textArea = JST["text_area"];
 			$("#fields").append("<li class=\"field-" + numFields + "\">" + textArea() + "</li>");
+			
+			var template = JST["edit_field"];
+			var fieldForm = template ({
+				id: numFields,
+				type: "text_area"
+			});
+			
+			$("#edit-field .tab-form").append(fieldForm);
 			numFields++;
 		});
 		
 		$("#checkbox-btn").on("click", function (event) {
 			var checkbox = JST["checkbox"];
 			$("#fields").append("<li class=\"field-" + numFields + "\">" + checkbox() + "</li>");
+
+			var template = JST["edit_field"];
+			var fieldForm = template ({
+				id: numFields,
+				type: "check_box"
+			});
+			
+			$("#edit-field .tab-form").append(fieldForm);
 			numFields++;
 		});
 		
 		$("#dropdown-btn").on("click", function (event) {
 			var dropdown = JST["dropdown"];
 			$("#fields").append("<li class=\"field-" + numFields + "\">" + dropdown() + "</li>");
+			
+			var template = JST["edit_field"];
+			var fieldForm = template ({
+				id: numFields,
+				type: "radio_button"
+			});
+			
+			$("#edit-field .tab-form").append(fieldForm);
 			numFields++;
 		});
 		
 		$("#select-btn").on("click", function (event) {
 			var multipleChoice = JST["select"];
 			$("#fields").append("<li class=\"field-" + numFields + "\">" + multipleChoice() + "</li>");
+			
+			var template = JST["edit_field"];
+			var fieldForm = template ({
+				id: numFields,
+				type: "radio_button"
+			});
+			
+			$("#edit-field .tab-form").append(fieldForm);
 			numFields++;
 		});
 		
@@ -113,15 +147,22 @@
 			if(currClick) {
 				currClick.toggleClass("clicked");
 			}
+			if(currField != null) {
+				$("#field-" + currField).toggleClass("hidden-field-form displayed-field-form")
+			}
 			
 			currClick = $(event.currentTarget)
 			currClick.toggleClass("clicked");
+			
+			currField = currClick[0].className.substring(6,7);
 			
 			$("li.active").toggleClass("active");
 			$("li.edit-field-tab").toggleClass("active");
 			
 			$("div.active").toggleClass("active in");
 			$("div#edit-field").toggleClass("active in");
+			
+			$("#field-" + currField).toggleClass("hidden-field-form displayed-field-form")
 		});
 		
 		$("#form").on("click", function (event) {
@@ -173,6 +214,9 @@
 				currClick.toggleClass("clicked");
 				currClick = null
 			}
+			if(currField) {
+				$("#field-" + currField).toggleClass("hidden-field-form displayed-field-form")
+			}
 			
 			if ($("ul#fields").html() == "") {
 				var textField = JST["text_field"];
@@ -181,6 +225,8 @@
 			}
 			
 			currClick = $("ul#fields li.field-0");
+			currField = 0;
+			$("#field-0").toggleClass("hidden-field-form displayed-field-form");
 			currClick.toggleClass("clicked");
 		});
 		

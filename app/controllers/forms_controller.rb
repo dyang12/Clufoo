@@ -17,14 +17,17 @@ class FormsController < ApplicationController
   
   def create
     params[:form][:account_id] = current_account.id
-    @form = Form.new(params[:form])
+    @form = Form.create(params[:form])
+    fields = []
     
-    if @form.save
-      redirect_to forms_url(current_account)
-    else
-      flash.now[:errors] = @form.errors.full_messages
-      render :new
+    params[:fields].each do |key, val|
+      field = Field.new(val[val.keys[0]])
+      fields << field
     end
+    
+    @form.update_attributes(:fields => fields)
+    
+    redirect_to forms_url(current_account)
   end
   
   def edit

@@ -38,10 +38,10 @@
 					<div class="tab-form">
 						<form id="save-form-attributes">
 							<label for="form-title-attr">Form Title: </label>
-							<input type="text" name="form[title]" value="" id="form-title-attr">
+							<input type="text" name="form[title]" value="Untitled" id="form-title-attr">
 							<br>
 							<label for="form-description-attr">Form Description: </label>
-							<textarea id="form-description-attr" name="form[description]" rows="4"></textarea>
+							<textarea id="form-description-attr" name="form[description]" rows="4">Create a new form!</textarea>
 							<br>
 	
 							<input type="submit" class="btn btn-primary" value="Save">
@@ -248,9 +248,25 @@
 		});
 		
 		$("#create-form-btn").on("click", function(event) {
-			var form = $("#save-form-attributes").serializeJSON().form
+			var form = $("#save-form-attributes").serializeJSON().form;
+			var fields = [];
 			
-			debugger
+			for (var i = 0; i < numFields; i++) {
+				var field = $("#field-" + i).serializeJSON();
+				fields.push(field);
+			}
+			
+			$.ajax({
+				url: "/forms",
+				type: "post",
+				data: {
+					form: form,
+					fields: fields
+				},
+				success: function(data) {
+					window.location.replace("/forms");
+				}
+			})
 		});
 	});
 </script>

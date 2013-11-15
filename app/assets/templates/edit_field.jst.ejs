@@ -3,5 +3,22 @@
 	<input type="text" name="field_<%= id %>[label]" value="Untitled" id="label-<%= id %>">
 	<input type="hidden" name="field_<%= id %>[type]" value="<%= type %>">
 	<br>
+	<label class="label" for="field-required">Required</label>
+	<input type="checkbox" name="field[required]" value="t" id="field-required">
+	<br>
+	<label class="label" for="field-unique">No Duplicates</label>
+	<input type="checkbox" name="field[uniqueness]" value="t" id="field-unique">
+	<br>
 	<input type="submit" class= "btn btn-primary" value="Save">
 </form>
+
+<script>
+	$(document).ready(function() {
+		$("#field-<%= id %>").on("submit", function(event) {
+			event.preventDefault();
+			
+			var data = $(event.target).serializeJSON();
+			$("li.field-<%= id %> label").text(data.field_<%= id %>.label);
+		});
+	});
+</script>

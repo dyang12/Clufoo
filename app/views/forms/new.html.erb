@@ -221,6 +221,14 @@
 			if ($("ul#fields").html() == "") {
 				var textField = JST["text_field"];
 				$("#fields").append("<li class=\"field-" + numFields + "\">" + textField() + "</li>");
+				
+				var template = JST["edit_field"];
+				var fieldForm = template ({
+					id: numFields,
+					type: "text_field"
+				});
+			
+				$("#edit-field .tab-form").append(fieldForm);
 				numFields++;
 			}
 			

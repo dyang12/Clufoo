@@ -2,11 +2,7 @@ Clufoo
 ======
 Deployed on Heroku at [Clufoo](mysterious-temple-4935.herokuapp.com)
 
-<<<<<<< HEAD
 Clufoo allows a user to create dynamic custom forms and can store form entries within the database to be accessed at a later time.
-=======
-Clufoo generates dynamic custom forms and can store form entries within the database to be accessed at a later time.
->>>>>>> 185b5c3102c59152c2864f76e75c43cce67a381b
 
 ####Features
 - Dynamic forms

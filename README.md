@@ -1,6 +1,9 @@
 Clufoo
 ======
 Deployed on Heroku at [Clufoo](http://mysterious-temple-4935.herokuapp.com)
+Guest Login
+Username: Guest
+Password: Password
 
 Clufoo allows a user to create dynamic custom forms and can store form entries within the database to be accessed at a later time.
 

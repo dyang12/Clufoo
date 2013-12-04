@@ -11,10 +11,9 @@ Clufoo allows a user to create dynamic custom forms and can store form entries w
 
 ####Features
 - Dynamic forms
-- Multiple user access to an account
-- Adminitstrative account tools
+- Administrative account tools
 - Entry data storage
-- Email notifications of new entries
+- Email notifications
 
 #### Technology
 - Rails

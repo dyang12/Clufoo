@@ -10,7 +10,7 @@ $(document).ready(function() {
 			success: function(data) {
 				var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</form>")) +"</form></div>";
 				form = form.replace("entry-form", "entry-form-short");
-				$(".inline-block").html(form);
+				$("#entry-view").html(form);
 			}
 		});
   });
@@ -25,10 +25,9 @@ $(document).ready(function() {
 			type:"get",
 			success: function(data) {
 				var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</div>"));
-				form = form.replace("entry-form", "entry-form-short");
-				
-				$(".inline-block").empty();
-				$(".inline-block").html("<div class=\"span7\">" + form + "</div><div class=\"span4\">" + entrySidebar() + "</div>");
+				form = form.substring(0, form.indexOf("</div>")).replace("entry-form", "entry-form-short");
+				$("#entry-view").empty();
+				$("#entry-view").html("<div class=\"span7\">" + form + "</div>\n</div>\n<div class=\"span4\">" + entrySidebar() + "</div>");
 			}
 		});
 	});

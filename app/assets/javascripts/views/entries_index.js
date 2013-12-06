@@ -1,10 +1,10 @@
 $(document).ready(function() {
   $('#new-entry').on('click', function(event) {
-  event.preventDefault();
-
-	var formId = $("table.table-header").attr("data-id");
-
-	$.ajax({
+  	event.preventDefault();
+		
+		var formId = $("table.table-header").attr("data-id");
+		
+		$.ajax({
 			url: "/forms/" + formId + "/entries/new",
 			type: "get",
 			success: function(data) {
@@ -27,7 +27,7 @@ $(document).ready(function() {
 				var form = data.substring(data.indexOf("<div class=\"entry-form\""), data.lastIndexOf("</div>"));
 				form = form.substring(0, form.indexOf("</div>")).replace("entry-form", "entry-form-short");
 				$("#entry-view").empty();
-				$("#entry-view").html("<div class=\"span7\">" + form + "</div>\n</div>\n<div class=\"span4\">" + entrySidebar() + "</div>");
+				$("#entry-view").html("<div class=\"span7\">" + form + "</div></div><div class=\"span4\">" + entrySidebar() + "</div>");
 			}
 		});
 	});

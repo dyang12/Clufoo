@@ -200,6 +200,6 @@ $(document).ready(function() {
 			success: function(data) {
 				window.location.replace("/forms");
 			}
-		})
+		});
 	});
 });

@@ -22,6 +22,35 @@
 			<p><input class="btn" type="submit" value="Sign In"></p>
 		</form>
 
-		<%= link_to "Signup", new_account_url %>
+		<div>
+		<%= link_to "Sign Up", new_account_url %>
+		</div>
+		
+		<div>
+		<a class="demo" href="">Demo Account</a>
+		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function() {
+		$('.demo').on('click', function(event) {
+  		event.preventDefault();
+			var user = {
+				username: "guest",
+				password: "password"
+			}
+			
+			$.ajax({
+				url: "/session",
+				type: "post",
+				data: {
+					user: user
+				},
+				success: function(data) {
+					window.location.replace("/forms");
+				}
+			});
+		});
+	});
+</script>

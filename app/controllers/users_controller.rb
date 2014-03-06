@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       flash.now[:errors] = ["Passwords do not match"]
       @user = User.new(params[:user])
       render :new
-    end    
+    end
   end
 
   def update

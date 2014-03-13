@@ -60,7 +60,7 @@ class FormsController < ApplicationController
     
     Form.create(attributes)
       
-    redirect_to forms_url(current_account)
+    redirect_to forms_url
   end
   
   def destroy

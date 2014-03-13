@@ -1,0 +1,49 @@
+<form id="field-<%= index %>" class="hidden-field-form">
+	<input type="hidden" name="field_<%= index %>[type]" value="<%= field.type %>">
+	
+	<label for="label-<%= index %>">Label: </label>
+	<input type="text" name="field_<%= index %>[label]" value="<%= field.label %>" id="label-<%= index %>">
+	<br>
+	
+	<label class="label" for="field-required">Required</label>
+	<input type="checkbox" name="field_<%= index %>[required]" value="t" id="field-required">
+	<br>
+	
+	<label class="label" for="field-unique">No Duplicates</label>
+	<input type="checkbox" name="field_<%= index %>[uniqueness]" value="t" id="field-unique">
+	<br>
+	
+	<% if(field.type != "text_area" && field.type != "text_field") %>
+		<input type="text" name="field_<%= index %>[choices][]" value="First Choice">
+		<input type="text" name="field_<%= index %>[choices][]" value="Second Choice">
+		<input type="text" name="field_<%= index %>[choices][]" value="Third Choice">
+	<% end %>
+	<br>
+	
+	<input type="submit" class= "btn btn-primary" value="Save">
+</form>
+
+<script>
+$(document).ready(function() {
+	$("#field-<%= index %>").on("submit", function(event) {
+		event.preventDefault();
+		
+		var data = $(event.target).serializeJSON();
+		field = data.field_<%= index %>;
+		$("li.field-<%= index %> label.bold").text(field.label);
+		
+		if (field.type == "select") {
+			for (var i = 1; i <= field.choices.length; i++) {
+				
+				$("li.field-<%= index %> #select #choice-" + i).text(field.choices[i-1]);
+			}
+		}
+		else if (field.type == "radio_button" || field.type == "check_box") {
+			for (var i = 1; i <= field.choices.length; i++) {
+				$("li.field-<%= index %> .choices .choice-" + i + " label").text(field.choices[i-1]);
+			}
+			
+		}
+	});
+});
+</script>

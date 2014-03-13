@@ -190,9 +190,38 @@ $(document).ready(function() {
 			fields.push(field);
 		}
 		
+		numFields = 0;
+		
 		$.ajax({
 			url: "/forms",
 			type: "post",
+			data: {
+				form: form,
+				fields: fields
+			},
+			success: function(data) {
+				window.location.replace("/forms");
+			}
+		});
+	});
+	
+	
+	$("#update-form-btn").on("click", function(event) {
+		var form = $("#save-form-attributes").serializeJSON().form;
+		var fields = [];
+		var formId = $("#form").attr("data-id");
+		numFields = $("#edit-field").attr("data-id");
+		
+		for (var i = 0; i < numFields; i++) {
+			var field = $("#field-" + i).serializeJSON();
+			fields.push(field);
+		}
+		
+		numFields = 0;
+		
+		$.ajax({
+			url: "/forms/" + formId,
+			type: "put",
 			data: {
 				form: form,
 				fields: fields

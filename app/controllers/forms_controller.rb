@@ -27,7 +27,7 @@ class FormsController < ApplicationController
     
     @form.update_attributes(:fields => fields)
     
-    redirect_to forms_url(current_account)
+    render :json => {}
   end
   
   def edit
@@ -37,13 +37,17 @@ class FormsController < ApplicationController
   
   def update
     @form = Form.find(params[:id])
+    fields = []
     
-    if @form.update_attributes(params[:form])
-      render :show
-    else
-      flash.now[:errors] = @form.errors.full_messages
-      render :edit
+    params[:fields].each do |key, val|
+      field = Field.new(val[val.keys[0]])
+      fields << field
     end
+    
+    @form.update_attributes(:fields => fields)
+    @form.update_attributes(params[:form])
+    
+    render :json => {}
   end
   
   def duplicate
@@ -63,6 +67,6 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @form.destroy
     
-    redirect_to forms_url(current_account)
+    redirect_to forms_url
   end
 end

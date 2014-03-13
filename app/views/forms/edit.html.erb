@@ -30,7 +30,7 @@
 						<button id="radio-btn" class="btn btn-list" type="button">Multiple Choice</button>
 					</div>
 				</div>
-				<div id="edit-field" class="tab-pane fade">
+				<div id="edit-field" class="tab-pane fade" data-id="<%= @form.fields.length %>">
 					<div class="tab-form">
 						<% @form.fields.each_with_index do |field, i| %>
 								<%=render :partial => "field_form", :locals => {:field => field, :index => i} %>
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<div class="new-form">
-			<div id="form">
+			<div id="form" data-id="<%= @form.id %>">
 				<h3 id="form-title"><%= @form.title %></h3>
 				<p id="form-description"><%= @form.description %></p>
 			</div>
@@ -68,8 +68,8 @@
 				</ul>
 			
 		</div>
-		<div id="create-form">
-			<button id="create-form-btn" class="btn btn-primary pull-right" type="submit">Make Form</button>
+		<div id="update-form">
+			<button id="update-form-btn" class="btn btn-primary pull-right" type="submit">Update Form</button>
 			<br>
 		</div>
 	</div>

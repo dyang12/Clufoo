@@ -14,9 +14,9 @@
 	<br>
 	
 	<% if(field.type != "text_area" && field.type != "text_field") %>
-		<input type="text" name="field_<%= index %>[choices][]" value="First Choice">
-		<input type="text" name="field_<%= index %>[choices][]" value="Second Choice">
-		<input type="text" name="field_<%= index %>[choices][]" value="Third Choice">
+		<% field.choices.each do |choice| %>
+		<input type="text" name="field_<%= index %>[choices][]" value="<%= choice %>">
+		<% end %>
 	<% end %>
 	<br>
 	

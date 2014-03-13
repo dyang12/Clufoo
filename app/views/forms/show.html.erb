@@ -1,8 +1,0 @@
-<%= button_to "Back", forms_url(current_user), :method => :get %>
-
-<h4>Form: <%= @form.title %></h4>
-<p>Description: <%= @form.description %></p>
-
-<%= render :partial => "field", :locals => {:form => @form}, :collection => @form.fields %>
-
-<%= button_to "Add Field", new_form_field_url(@form), :method => :get %>

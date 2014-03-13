@@ -1,13 +1,29 @@
-Field Label: <%= field.label %>
-<br>
-Field Type: <%= field.display_type %>
-<br>
-Options: <%= field.display_options %>
-<br>
-<% if field.isNotText %>
-	Choices: <%= field.display_choices %>
-	<br>
+<label class="bold"><%= field.label %></label>
+<% if field.type == "text_field" %>
+	<input type="text" disabled>
+<% elsif field.type == "text_area" %>
+	<textarea disabled></textarea>
+<% elsif field.type == "check_box" %>
+	<% field.choices.each_with_index do |choice, i| %>
+		<div class="choices">
+			<div class="choice-<%= i %>">
+				<label class="label"><%= choice %></label>
+				<input type="checkbox" disabled>
+			</div>
+	<% end %>
+<% elsif field.type == "select" %>
+	<select id="select" disabled>
+		<% field.choices.each_with_index do |choice, i| %>
+			<option id="choice-<%= i %>"><%= choice %></option>
+		<% end %>
+	</select>
+	<% else %>
+	<div class="choices">
+		<% field.choices.each_with_index do |choice, i| %>
+			<div class="choice-<%= i %>">
+				<label class="label"><%= choice %></label>
+				<input id="first<%= i %>" type="radio" disabled>
+			</div>
+		<% end %>
+	</div>
 <% end %>
-<%= button_to "Edit Field", edit_form_field_url(form.id, field.id), :method => :get %>
-<%= button_to "Remove Field", form_field_url(form.id, field.id), :method => :delete %>
-<br>

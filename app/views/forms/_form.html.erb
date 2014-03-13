@@ -2,7 +2,7 @@
 	<h4 class= "el-title"><%= form.title %></h4>
 	<ul class="inline">
 		<li><%= link_to "Entries", form_entries_url(form), :method => :get %></li>
-		<li><%= link_to "Edit" %></li>
+		<li><%= link_to "Edit", edit_form_url(form), :method => :get %></li>
 		<li><%= link_to "View", new_form_entry_url(form), :method => :get %></li>
 		<li><%= link_to "Notifications" %></li>
 		<li><%= link_to "Payment" %></li>

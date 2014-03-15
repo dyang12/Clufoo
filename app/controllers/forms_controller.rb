@@ -17,7 +17,6 @@ class FormsController < ApplicationController
   
   def create
     params[:form][:account_id] = current_account.id
-    @form = Form.create(params[:form])
     fields = []
     
     params[:fields].each do |key, val|
@@ -25,7 +24,8 @@ class FormsController < ApplicationController
       fields << field
     end
     
-    @form.update_attributes(:fields => fields)
+    params[:form][:fields] = fields
+    @form.new(params[:form])
     
     render :json => {}
   end

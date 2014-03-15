@@ -14,6 +14,8 @@ class Form
   many :entries
   belongs_to :account
   
+  validates_associated :fields
+  
   def has_field_id?(field_id)
     self.fields.each  { |field| return true if field.id.to_s == field_id }
     

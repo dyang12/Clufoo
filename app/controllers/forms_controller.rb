@@ -19,18 +19,20 @@ class FormsController < ApplicationController
     params[:form][:account_id] = current_account.id
     fields = []
     
-    params[:fields].each do |key, val|
-      field = Field.new(val[val.keys[0]])
-      fields << field
+    if params[:fields]
+      params[:fields].each do |key, val|
+        field = Field.new(val[val.keys[0]])
+        fields << field
+      end
     end
     
     params[:form][:fields] = fields
-    @form.new(params[:form])
+    @form = Form.new(params[:form])
     
     if @form.save
       render :json => {}
     else
-      flash.now[:errors] = @form.errors.full_messages
+      render :json => @form.errors.messages
     end
   end
   
@@ -43,16 +45,19 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     fields = []
     
-    params[:fields].each do |key, val|
-      field = Field.new(val[val.keys[0]])
-      fields << field
+    if params[:fields]
+      params[:fields].each do |key, val|
+        field = Field.new(val[val.keys[0]])
+        fields << field
+      end
     end
     
     params[:form][:fields] = fields
+    
     if @form.update_attributes(params[:form])
       render :json => {}
     else
-      
+      render :json => @form.errors.messages
     end
   end
   

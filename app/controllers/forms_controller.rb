@@ -27,7 +27,11 @@ class FormsController < ApplicationController
     params[:form][:fields] = fields
     @form.new(params[:form])
     
-    render :json => {}
+    if @form.save
+      render :json => {}
+    else
+      flash.now[:errors] = @form.errors.full_messages
+    end
   end
   
   def edit

@@ -48,10 +48,12 @@ class FormsController < ApplicationController
       fields << field
     end
     
-    @form.update_attributes(:fields => fields)
-    @form.update_attributes(params[:form])
-    
-    render :json => {}
+    params[:form][:fields] = fields
+    if @form.update_attributes(params[:form])
+      render :json => {}
+    else
+      
+    end
   end
   
   def duplicate

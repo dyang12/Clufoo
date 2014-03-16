@@ -200,7 +200,11 @@ $(document).ready(function() {
 				fields: fields
 			},
 			success: function(data) {
-				console.log(data);
+				if(data["title"] || data["fields"]) {
+					
+				} else {
+					window.location.replace("/forms");
+				}
 			}
 		});
 	});
@@ -227,7 +231,11 @@ $(document).ready(function() {
 				fields: fields
 			},
 			success: function(data) {
-				window.location.replace("/forms");
+				if(data["title"] || data["fields"]) {
+					
+				} else {
+					window.location.replace("/forms");
+				}
 			}
 		});
 	});

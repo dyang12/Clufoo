@@ -32,6 +32,8 @@ class FormsController < ApplicationController
     if @form.save
       render :json => {}
     else
+      p @form.fields[0].errors
+      
       render :json => @form.errors.messages
     end
   end

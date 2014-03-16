@@ -28,7 +28,7 @@ class FormsController < ApplicationController
     
     params[:form][:fields] = fields
     @form = Form.new(params[:form])
-    
+    p @form.fields
     if @form.save
       render :json => {}
     else
@@ -39,7 +39,8 @@ class FormsController < ApplicationController
       @form.fields.each_with_index do |field, i|
         errors[("field-" + i.to_s).to_sym] = field.errors.messages
       end
-      
+
+      p errors
       render :json => errors
     end
   end

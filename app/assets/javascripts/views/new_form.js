@@ -200,12 +200,26 @@ $(document).ready(function() {
 				fields: fields
 			},
 			success: function(data) {
-				if(data["title"] || data["fields"]) {
-					var errors = "";
-					debugger
+				if(jQuery.isEmptyObject(data)) {
 					
-				} else {
 					window.location.replace("/forms");
+				} else {
+					var errors = "";
+					
+					for(var key in data) {
+						
+						if(data.hasOwnProperty(key)) {
+							for(var attr in data[key]) {
+								
+								if(data[key].hasOwnProperty(attr)) {
+									errors = errors.concat("<li>" + key + " " + attr +
+																				 " " + data[key][attr] +"</li>");
+								}
+							}
+						}
+					}
+					
+					$(".errors").html(errors);
 				}
 			}
 		});
@@ -233,19 +247,25 @@ $(document).ready(function() {
 				fields: fields
 			},
 			success: function(data) {
-				if(data["title"] || data["fields"]) {
+				if(jQuery.isEmptyObject(data)) {
+					window.location.replace("/forms");
+				} else {
 					var errors = "";
 					
-					if(data["title"]) {
-						errors = errors.concat("<li> The form title cannot be blank</li>");
-					}
-					if(data["fields"]) {
-						errors = errors.concat("<li> Field labels/options cannot be blank</li>");
+					for(var key in data) {
+						
+						if(data.hasOwnProperty(key)) {
+							for(var attr in data[key]) {
+								
+								if(data[key].hasOwnProperty(attr)) {
+									errors = errors.concat("<li>" + key + " " + attr +
+																				 " " + data[key][attr] +"</li>");
+								}
+							}
+						}
 					}
 					
 					$(".errors").html(errors);
-				} else {
-					window.location.replace("/forms");
 				}
 			}
 		});

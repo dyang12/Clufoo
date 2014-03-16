@@ -213,7 +213,7 @@ $(document).ready(function() {
 								
 								if(data[key].hasOwnProperty(attr)) {
 									errors = errors.concat("<li>" + key + " " + attr +
-																				 " " + data[key][attr] +"</li>");
+																				 " " + data[key][attr][0] +"</li>");
 								}
 							}
 						}
@@ -259,7 +259,7 @@ $(document).ready(function() {
 								
 								if(data[key].hasOwnProperty(attr)) {
 									errors = errors.concat("<li>" + key + " " + attr +
-																				 " " + data[key][attr] +"</li>");
+																				 " " + data[key][attr][0] +"</li>");
 								}
 							}
 						}

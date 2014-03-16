@@ -40,8 +40,6 @@ class FormsController < ApplicationController
         errors[("field-" + i.to_s).to_sym] = field.errors.messages
       end
       
-      p errors
-      
       render :json => errors
     end
   end
@@ -67,7 +65,15 @@ class FormsController < ApplicationController
     if @form.update_attributes(params[:form])
       render :json => {}
     else
-      render :json => @form.errors.messages
+      errors = {}
+      @form.errors.delete(:fields)
+      errors[:form] = @form.errors.messages
+      
+      @form.fields.each_with_index do |field, i|
+        errors[("field-" + i.to_s).to_sym] = field.errors.messages
+      end
+      
+      render :json => errors
     end
   end
   

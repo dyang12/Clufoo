@@ -1,8 +1,8 @@
 class Field
   include MongoMapper::EmbeddedDocument
   
-  key :label, String, :required => true
-  key :type, String, :required => true
+  key :label, String
+  key :type, String
   key :required, String
   key :uniqueness, String
   key :choices, Array
@@ -12,6 +12,8 @@ class Field
   attr_accessible :label, :type, :required, :uniqueness, :choices
   
   before_validation :generate_choices
+  validate :presence_of_label
+  validate :presence_of_type
   
   def display_type
     case self.type
@@ -57,6 +59,18 @@ class Field
   def generate_choices
     if self.choices.empty? && self.isNotText
       self.choices = ["First Choice", "Second Choice", "Third Choice"]
+    end
+  end
+  
+  def presence_of_label
+    if self.label == "" || self.label == nil
+      errors.add(:label, "cannot be blank")
+    end
+  end
+  
+  def presence_of_type
+    if self.type == "" || self.type == nil
+      errors.add(:type, "cannot be blank")
     end
   end
 end

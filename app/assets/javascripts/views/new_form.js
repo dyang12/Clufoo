@@ -200,7 +200,7 @@ $(document).ready(function() {
 				fields: fields
 			},
 			success: function(data) {
-				window.location.replace("/forms");
+				console.log(data);
 			}
 		});
 	});

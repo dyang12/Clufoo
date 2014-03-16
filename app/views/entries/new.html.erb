@@ -3,6 +3,9 @@
 	<%= @form.description %>
 	<br>
 	<br>
+
+	<%= render :partial => "layouts/errors" %>
+	
 	<%= form_for @entry, :url => {:action => "create"}, :html => {:class => "form-horizontal"}  do |f| %>
 		<input type="hidden" 
 					 name="authenticity_token"

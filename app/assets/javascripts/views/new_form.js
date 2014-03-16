@@ -201,7 +201,16 @@ $(document).ready(function() {
 			},
 			success: function(data) {
 				if(data["title"] || data["fields"]) {
+					var errors = "";
 					
+					if(data["title"]) {
+						errors = errors.concat("<li> The form title cannot be blank</li>");
+					}
+					if(data["fields"]) {
+						errors = errors.concat("<li> Field labels/options cannot be blank</li>");
+					}
+					console.log(errors);
+					$(".errors").html(errors);
 				} else {
 					window.location.replace("/forms");
 				}
@@ -232,7 +241,16 @@ $(document).ready(function() {
 			},
 			success: function(data) {
 				if(data["title"] || data["fields"]) {
+					var errors = "";
 					
+					if(data["title"]) {
+						errors = errors.concat("<li> The form title cannot be blank</li>");
+					}
+					if(data["fields"]) {
+						errors = errors.concat("<li> Field labels/options cannot be blank</li>");
+					}
+					
+					$(".errors").html(errors);
 				} else {
 					window.location.replace("/forms");
 				}

@@ -10,8 +10,6 @@
 
 		<input type="hidden" name="form_id" value="<%= @form.id %>">
 
-		<%= render :partial => "layouts/errors" %>
-
 		<% @form.fields.each do |field| %>
 			<% if field.type == "check_box" %>
 				<div>

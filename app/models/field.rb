@@ -65,7 +65,7 @@ class Field
     if self.isNotText
       self.choices.each_with_index do |choice, i|
         if choice == "" || choice = nil
-          errors.add(("choice-" + i.to_s).to_sym, "cannot be blanks")
+          errors.add(("choice-" + i.to_s).to_sym, "cannot be blank")
         end
       end
     end

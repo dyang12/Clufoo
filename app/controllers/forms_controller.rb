@@ -32,9 +32,17 @@ class FormsController < ApplicationController
     if @form.save
       render :json => {}
     else
-      p @form.fields[0].errors
+      errors = {}
+      @form.errors.delete(:fields)
+      errors[:form] = @form.errors.messages
       
-      render :json => @form.errors.messages
+      @form.fields.each_with_index do |field, i|
+        errors[("field-" + i.to_s).to_sym] = field.errors.messages
+      end
+      
+      p errors
+      
+      render :json => errors
     end
   end
   

@@ -1,6 +1,6 @@
 Clufoo
 ======
-Deployed on Heroku at [Clufoo](http://mysterious-temple-4935.herokuapp.com)
+Deployed on Heroku at [Clufoo](http://clufoo.com)
 Guest Login
 
 Username: Guest
